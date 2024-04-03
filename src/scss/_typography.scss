@@ -1,0 +1,22 @@
+body {
+    font-family: $font-body;
+    font-size: $size-base;
+}
+
+@for $i from 1 through 4 {
+    h#{$i} {
+        font-size: $heading-#{$i};
+        font-family: $font-headings;
+        font-weight: bold;
+    }
+    h#{$i},
+    p,
+    li {
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+}
+
+h5 {
+    font-size: $--heading-5;
+}
