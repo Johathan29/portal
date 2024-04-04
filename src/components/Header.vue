@@ -1,6 +1,17 @@
 <script setup>
+import { ref } from 'vue'
+import metadata from '../Metadata';
+const site = metadata.value;
+const nameclass=ref();
 import navegation from '../navegation';
 const router = navegation.value;
+const funcion=()=>{
+const element=document.getElementById('nav');
+var atributo = element.getAttribute('class');
+return atributo=='d-md-block'? element.classList.add('d-block'):
+  element.classList.remove('d-block');
+
+}
 </script>
 <template>
   <header>
@@ -56,9 +67,9 @@ const router = navegation.value;
       <div class="container">
         <div class="d-flex justify-content-between">
           <div class="logo d-flex align-items-center">
-            <img src="img/logo-cupula.svg" alt="" height="40" />
-            <router-link to=""
-              ><h4 class="text-white m-0">Texto link</h4>
+            <img src="../assets/img/logo-cupula.svg" alt="" height="40" />
+            <router-link to="/"
+            v-for="item in site" ><h4 class="text-white m-0">{{item.titlesmall}}</h4>
             </router-link>
           </div>
           <div class="search-box d-none d-md-flex">
@@ -76,14 +87,14 @@ const router = navegation.value;
             <button class="btn is-secondary rounded-full">
               <i class="fas fa-search"></i>
             </button>
-            <a href="">
-              <img src="img/icons/icon-hamburger.svg" alt="" height="32" />
+            <a v-on:click="funcion">
+              <img  src="../assets/img/icons/icon-hamburger.svg" alt="" height="32" />
             </a>
           </div>
         </div>
       </div>
     </div>
-    <nav class="d-none d-md-block">
+    <nav :class="['d-md-block',nameclass]" id="nav" style="display: none;">
       <div class="container">
         <ul class="main-nav">
           <li

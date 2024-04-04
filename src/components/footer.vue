@@ -17,11 +17,11 @@ const router = navegation.value;
               height="112"
           /></a>
         </div>
-        <div class="col-6 col-md-2" v-for="item in site">
+        <div class="col-6 col-md-2 mt-4" v-for="item in site">
           <h5 class="text-white is-uppercase">Conócenos</h5>
           <p>{{item.title}}</p>
         </div>
-        <div class="col-6 col-md-2" v-for="item in site">
+        <div class="col-6 col-md-2 mt-4" v-for="item in site">
           <h5 class="text-white is-uppercase">Contáctanos</h5>
           <p>
             <a v-bind:href="'tel:'+item.phone">
@@ -36,13 +36,13 @@ const router = navegation.value;
             >
           </p>
         </div>
-        <div class="col-6 col-md-2 " v-for="item in site">
+        <div class="col-6 col-md-2 mt-4" v-for="item in site">
           <h5 class="text-white is-uppercase">Búscanos</h5>
           <p>
             {{item.adress}}
           </p>
         </div>
-        <div class="col-6 col-md-2">
+        <div class="col-6 col-md-2 mt-4">
           <h5 class="text-white is-uppercase">Infórmate</h5>
           <ul class="secondary-menu">
           <li
