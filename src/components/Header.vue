@@ -89,7 +89,7 @@ const router = navegation.value;
           <li
             v-for="item in router"
             :class="[item.children.length >= 1 ? 'is-dropdown' : '']"
-            v-if="item.ubicacion == 0"
+           
           >
             <router-link v-bind:to="item.path">{{ item.title }}</router-link>
             <ul v-if="item.children != ''" class="sub-menu">
