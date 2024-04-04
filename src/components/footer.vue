@@ -47,8 +47,7 @@ const router = navegation.value;
           <ul class="secondary-menu">
           <li
             v-for="item in router"
-            v-bind:hidden="[item.ubicacion== 1 ? 'd-none' : '']"
-          >
+            v-bind:hidden="[item.ubicacion== 1 ? 'd-none' : '']">
             <router-link v-bind:to="item.path">{{ item.title }}</router-link>
             <ul v-if="item.children != ''" class="sub-menu">
               <li v-for="subitem in item.children">
