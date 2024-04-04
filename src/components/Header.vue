@@ -88,8 +88,8 @@ const router = navegation.value;
         <ul class="main-nav">
           <li
             v-for="item in router"
-            :class="[item.children.length >= 1 ? 'is-dropdown' : '']"
-           
+            :class="[item.children.length >= 1 ? 'is-dropdown' : '' + item.ubicacion== 0 ? 'd-none' : '']"
+            v-bind:hidden="[ item.ubicacion== 0 ? 'd-none' : '']"
           >
             <router-link v-bind:to="item.path">{{ item.title }}</router-link>
             <ul v-if="item.children != ''" class="sub-menu">

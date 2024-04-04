@@ -1,4 +1,7 @@
-<script></script>
+<script setup>
+import navegation from '../navegation';
+const router = navegation.value;
+</script>
 <template>
   <footer>
     <div class="container">
@@ -41,16 +44,20 @@
         <div class="col-6 col-md-2">
           <h5 class="text-white is-uppercase">Infórmate</h5>
           <ul class="secondary-menu">
-            <li>
-              <a href="#">Términos de uso</a>
-            </li>
-            <li>
-              <a href="#">Política de privacidad</a>
-            </li>
-            <li>
-              <a href="#">Preguntas frecuentes</a>
-            </li>
-          </ul>
+          <li
+            v-for="item in router"
+            v-bind:hidden="[item.ubicacion== 1 ? 'd-none' : '']"
+          >
+            <router-link v-bind:to="item.path">{{ item.title }}</router-link>
+            <ul v-if="item.children != ''" class="sub-menu">
+              <li v-for="subitem in item.children">
+                <router-link v-bind:to="subitem.path">
+                  {{ subitem.titlechild }}
+                </router-link>
+              </li>
+            </ul>
+          </li>
+        </ul>
         </div>
       </div>
     </div>
