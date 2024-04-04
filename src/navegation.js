@@ -2,7 +2,7 @@ const navegation = [
   {
     title: 'Inicio',
     path: '/',
-    component: 'quienessomos',
+    component: 'home',
     children: [],
     ubicacion: 1,
   },
@@ -29,13 +29,7 @@ const navegation = [
     children: [],
     ubicacion: 0,
   },
-  {
-    title: 'Política de privacidad',
-    path: 'politica-de-privacidad',
-    component: 'Politica-de-privacidad',
-    children: [],
-    ubicacion: 1,
-  },
+  
 ];
 export default {
   name: 'navegation',
