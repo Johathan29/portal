@@ -1,5 +1,7 @@
 <script setup>
 import navegation from '../navegation';
+import metadata from '../Metadata';
+const site=metadata.value;
 const router = navegation.value;
 </script>
 <template>
@@ -15,30 +17,29 @@ const router = navegation.value;
               height="112"
           /></a>
         </div>
-        <div class="col-6 col-md-2">
+        <div class="col-6 col-md-2" v-for="item in site">
           <h5 class="text-white is-uppercase">Conócenos</h5>
-          <p>Ministerio de Hacienda de República Dominicana</p>
+          <p>{{item.title}}</p>
         </div>
-        <div class="col-6 col-md-2">
+        <div class="col-6 col-md-2" v-for="item in site">
           <h5 class="text-white is-uppercase">Contáctanos</h5>
           <p>
-            <a href="tel:(809)-687-5131">
+            <a v-bind:href="'tel:'+item.phone">
               <i class="fas fa-phone me-2" aria-hidden="true"></i
-              >(809)-687-5131</a
+              >{{item.phone}}</a
             >
           </p>
           <p>
-            <a href="mailto:info@hacienda.gov.do">
+            <a v-bind:href="item.email">
               <i class="fas fa-envelope me-2" aria-hidden="true"></i
-              >info@hacienda.gov.do</a
+              >{{item.email}}</a
             >
           </p>
         </div>
-        <div class="col-6 col-md-2">
+        <div class="col-6 col-md-2 " v-for="item in site">
           <h5 class="text-white is-uppercase">Búscanos</h5>
           <p>
-            Avenida México #45, Gascue Santo Domingo, D.N., República
-            Dominicana. 10201
+            {{item.adress}}
           </p>
         </div>
         <div class="col-6 col-md-2">
