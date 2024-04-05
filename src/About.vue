@@ -39,38 +39,10 @@ const DeleteItems=()=>{}
       <h2>Testimonio</h2>
       <div class="row">
        <!----> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Open modal for @getbootstrap</button>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text" ></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
-    </div>
-  </div>
-</div>
-     
-  <div class="card m-2" style="width: 18rem;" v-for="user in users" :key="user.id">
+       <div class="card m-2" style="width: 18rem;" v-for="user in users" :key="user.id">
  <!--<img src="..." class="card-img-top" alt="...">-->
- <i class="fa-solid fa-user-secret" style="font-size: 70px;"></i>
-  <div class="card-body">
+         <i class="fa-solid fa-user-secret" style="font-size: 70px;"></i>
+    <div class="card-body">
     <h5 class="card-title">{{ user.name }}  {{ user.username }}</h5>
     <p class="card-text">{{ user.email }}</p>
     <button class="btn btn-primary "  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" v-on:mouseenter="detalleUser(user.id)">
@@ -82,7 +54,40 @@ const DeleteItems=()=>{}
           role="alert"
           v-if="user.id === grupoItem.id"
         >
+
         <div class="modal-dialog">
+           <div class="modal-content">
+              <div class="modal-header">
+                 <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                 </div>
+               <div class="modal-body">
+                 
+                     <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Firts Name:</label>
+                        <input type="text" class="form-control" id="recipient-name" :value="user.name"
+                            @input="firtsname= $event.target.value" >
+                       </div>
+                     <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Last Name:</label>
+                        <input class="form-control" type="text" id="message-text" :value="user.username"
+                         @input="lastname= $event.target.value" >
+                      </div>
+                
+                  </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" v-on:click="UpdateItems(firtsname,user.id,lastname )">Send message</button>
+                </div>
+            </div>
+          </div>
+      </div>
+    </div>
+   </div>
+</div>
+</div>
+
+       <!-- <div class="modal-dialog">
           <input type="text" class="w-100" :value="user.name"
   @input="firtsname= $event.target.value" >
           <input type="text" class="w-100" :value="user.username"
@@ -90,12 +95,8 @@ const DeleteItems=()=>{}
             {{ user.id }}
           <button class="btn text-success m-2 p-1 " v-on:click="UpdateItems(firtsname,user.id,lastname )"><i class="fa-solid fa-circle-check"></i></button>
           <button class="btn text-danger m-2 p-1" v-on:click="DeleteItems(firtsname,user.id,lastname )"><i class="fa-solid fa-trash"></i></button>
-        </div>
-      </div>
-  </div>
-</div>
-</div>
-</div>
+        </div>-->
+   
 </section>
  <!-- <h2 class="title">Listado de Usuarios</h2>
   <table class="table table-striped">
