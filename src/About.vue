@@ -22,10 +22,18 @@ const detalleUser = (index) => {
  
   console.log(grupoItem.value);
 };
-const Modificar=(firtsname,ID,lastname)=>{
-  users.value.filter(item =>item.id == ID ? item.name=firtsname : '')
-  users.value.filter(item =>item.id == ID ? item.username=lastname : '')
-}
+const UpdateItems=(firtsname,ID,lastname)=>{
+  if((firtsname!=null && lastname!=null) &&(firtsname!=null || lastname!=null)){
+    users.value.filter(item =>item.id == ID ? item.name=firtsname : '')
+    users.value.filter(item =>item.id == ID ? item.username=lastname : '')
+  }
+  else{
+    users.value.filter(item =>item.id == ID ? item.name:'')
+    users.value.filter(item =>item.id == ID ? item.username : '')
+  }
+
+} 
+const DeleteItems=()=>{}
 </script>
 
 <template>
@@ -60,7 +68,8 @@ const Modificar=(firtsname,ID,lastname)=>{
           <input type="text" class="w-100" :value="user.username"
   @input="lastname = $event.target.value" >
             {{ user.id }}
-          <button class="btn btn-warning" v-on:click="Modificar(firtsname,user.id,lastname )">Modificar</button>
+          <button class="btn btn-warning m-2 p-1" v-on:click="UpdateItems(firtsname,user.id,lastname )">Modificar</button>
+          <button class="btn btn-danger m-2 p-1" v-on:click="DeleteItems(firtsname,user.id,lastname )">Eliminar</button>
         </td>
       </tr>
     </tbody>
