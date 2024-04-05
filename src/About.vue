@@ -38,7 +38,34 @@ const DeleteItems=()=>{}
     <div class="container">
       <h2>Testimonio</h2>
       <div class="row">
+       <!----> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Open modal for @getbootstrap</button>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text" ></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
      
   <div class="card m-2" style="width: 18rem;" v-for="user in users" :key="user.id">
  <!--<img src="..." class="card-img-top" alt="...">-->
@@ -46,29 +73,31 @@ const DeleteItems=()=>{}
   <div class="card-body">
     <h5 class="card-title">{{ user.name }}  {{ user.username }}</h5>
     <p class="card-text">{{ user.email }}</p>
-    <button class="btn btn-primary "  @click="detalleUser(user.id)">
+    <button class="btn btn-primary "  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" v-on:mouseenter="detalleUser(user.id)">
             Modificar Detalle
           </button>
     <!--<a href="#" class="btn btn-primary">Modificar</a>-->
-    <div
-          class="alert alert-primary h-auto"
+    <div id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+          class="alert alert-primary h-auto modal fade"
           role="alert"
           v-if="user.id === grupoItem.id"
         >
+        <div class="modal-dialog">
           <input type="text" class="w-100" :value="user.name"
   @input="firtsname= $event.target.value" >
           <input type="text" class="w-100" :value="user.username"
   @input="lastname = $event.target.value" >
             {{ user.id }}
-          <button class="btn btn-warning m-2 p-1" v-on:click="UpdateItems(firtsname,user.id,lastname )">Modificar</button>
-          <button class="btn btn-danger m-2 p-1" v-on:click="DeleteItems(firtsname,user.id,lastname )">Eliminar</button>
+          <button class="btn text-success m-2 p-1 " v-on:click="UpdateItems(firtsname,user.id,lastname )"><i class="fa-solid fa-circle-check"></i></button>
+          <button class="btn text-danger m-2 p-1" v-on:click="DeleteItems(firtsname,user.id,lastname )"><i class="fa-solid fa-trash"></i></button>
         </div>
+      </div>
   </div>
 </div>
 </div>
 </div>
 </section>
-  <h2 class="title">Listado de Usuarios</h2>
+ <!-- <h2 class="title">Listado de Usuarios</h2>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -104,7 +133,7 @@ const DeleteItems=()=>{}
         </td>
       </tr>
     </tbody>
-  </table>
+  </table>-->
 </template>
 <style>
 th {
