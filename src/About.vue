@@ -50,8 +50,8 @@ const DeleteItems=()=>{}
           </button>
     <!--<a href="#" class="btn btn-primary">Modificar</a>-->
     <div id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-          class="alert alert-primary h-auto modal fade"
-          role="alert"
+          class=" modal fade"
+         
           v-if="user.id === grupoItem.id"
         >
 
