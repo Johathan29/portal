@@ -12,17 +12,19 @@ onMounted(async () => {
 });
 
 const detalleUser = (index) => {
-  setTimeout(() => {
+ /* setTimeout(() => {
    grupoItem.value="";
-  },'5000');
+  },'5000');*/
 
   itemUser.value = users.value.find((item) => item.id === index);
   grupoItem.value = itemUser.value;
-
+  
+ 
   console.log(grupoItem.value);
 };
-const Modificar=()=>{
-
+const Modificar=(firtsname,ID,lastname)=>{
+  users.value.filter(item =>item.id == ID ? item.name=firtsname : '')
+  users.value.filter(item =>item.id == ID ? item.username=lastname : '')
 }
 </script>
 
@@ -44,7 +46,7 @@ const Modificar=()=>{
         <td>{{ user.username }}</td>
         <td>{{ user.email }}</td>
         <td>
-          <button class="btn btn-info" @click="detalleUser(user.id)">
+          <button class="btn btn-info "  @click="detalleUser(user.id)">
             Detalle
           </button>
         </td>
@@ -53,11 +55,12 @@ const Modificar=()=>{
           role="alert"
           v-if="user.id === grupoItem.id"
         >
-          <input type="text" class="w-100"  :value="grupoItem.company.name"
- >
-          <input type="text" class="w-100" :value="grupoItem.name" :model="itemname">
-            {{ grupoItem.company.name }}
-          <button class="btn btn-warning" v-on:click="Modificar()">Modificar</button>
+          <input type="text" class="w-100" :value="user.name"
+  @input="firtsname= $event.target.value" >
+          <input type="text" class="w-100" :value="user.username"
+  @input="lastname = $event.target.value" >
+            {{ user.id }}
+          <button class="btn btn-warning" v-on:click="Modificar(firtsname,user.id,lastname )">Modificar</button>
         </td>
       </tr>
     </tbody>
@@ -71,7 +74,7 @@ td.alert.alert-primary {
   float: inline-start;
   margin-left: -17rem;
   background: aliceblue;
-  height: 104px;
+ 
 }
 .title {
   color: #fff;
