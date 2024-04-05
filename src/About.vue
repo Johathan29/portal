@@ -8,7 +8,7 @@ const grupoItem = ref([]);
 onMounted(async () => {
   const response = await fetch('https://jsonplaceholder.typicode.com/users');
   users.value = await response.json();
-  console.log(users.value);
+  console.log(users.value)
 });
 
 const detalleUser = (index) => {
@@ -18,9 +18,6 @@ const detalleUser = (index) => {
 
   itemUser.value = users.value.find((item) => item.id === index);
   grupoItem.value = itemUser.value;
-  
- 
-  console.log(grupoItem.value);
 };
 const UpdateItems=(firtsname,ID,lastname)=>{
   if((firtsname!=null && lastname!=null) &&(firtsname!=null || lastname!=null)){
@@ -37,6 +34,40 @@ const DeleteItems=()=>{}
 </script>
 
 <template>
+  <section class="title-section">
+    <div class="container">
+      <h2>Testimonio</h2>
+      <div class="row">
+
+     
+  <div class="card m-2" style="width: 18rem;" v-for="user in users" :key="user.id">
+ <!--<img src="..." class="card-img-top" alt="...">-->
+ <i class="fa-solid fa-user-secret" style="font-size: 70px;"></i>
+  <div class="card-body">
+    <h5 class="card-title">{{ user.name }}  {{ user.username }}</h5>
+    <p class="card-text">{{ user.email }}</p>
+    <button class="btn btn-primary "  @click="detalleUser(user.id)">
+            Modificar Detalle
+          </button>
+    <!--<a href="#" class="btn btn-primary">Modificar</a>-->
+    <div
+          class="alert alert-primary h-auto"
+          role="alert"
+          v-if="user.id === grupoItem.id"
+        >
+          <input type="text" class="w-100" :value="user.name"
+  @input="firtsname= $event.target.value" >
+          <input type="text" class="w-100" :value="user.username"
+  @input="lastname = $event.target.value" >
+            {{ user.id }}
+          <button class="btn btn-warning m-2 p-1" v-on:click="UpdateItems(firtsname,user.id,lastname )">Modificar</button>
+          <button class="btn btn-danger m-2 p-1" v-on:click="DeleteItems(firtsname,user.id,lastname )">Eliminar</button>
+        </div>
+  </div>
+</div>
+</div>
+</div>
+</section>
   <h2 class="title">Listado de Usuarios</h2>
   <table class="table table-striped">
     <thead>
@@ -99,5 +130,12 @@ td.alert.alert-primary {
   font-size: small;
   font-weight: 700;
   text-transform: capitalize;
+}
+i.fa-solid.fa-user-secret {
+    font-size: 70px;
+    border: 1px solid;
+    border-radius: 73px;
+    padding: 2rem;
+    background: #f0f6ff;
 }
 </style>
