@@ -3,23 +3,28 @@ import { ref, computed, onMounted } from 'vue';
 const users = ref(null);
 const itemUser = ref([]);
 const grupoItem = ref([]);
+const update=ref([])
   //https://jsonplaceholder.typicode.com/users
 onMounted(async () => {
   const response = await fetch('https://jsonplaceholder.typicode.com/users');
   users.value = await response.json();
   console.log(users.value)
 });
+
 //añadir nueva informacion de usuario
 const AddUser=(lastname, firtsname,email)=>{
-  if(lastname!=null || firtsname!=null || email!=null){
+  if(lastname!=null || firtsname!=null || email!=null)
+  {
     const id=users.value.length+1;
-  const formulario={
+    const formulario=
+    {
     id:id,
     name:firtsname,
     username: lastname,
     email:email,
   }
   users.value.push(formulario);
+  update.value.push(users.value.find((animal) => animal.id === id).id);
   }
   
 }
@@ -33,14 +38,19 @@ const detalleUser = (index) => {
 };
 const Delete = (index) => {
  
-      if (index) {
-       
-        users.value.shift((item) => item.id === index)
-      }
-   
-   else {
-    users.value.splice((item) => item.id === index)
+  itemUser.value = users.value.find((item) => item.id === index);
+  console.log(itemUser.value.id)
+  if(index===0 )
+  {
+   users.value.shift();
+
   }
+  else
+  {
+    users.value.slice(item => item.id===index);
+  }
+    
+ return users.value;
 };
 const UpdateItems=(firtsname,ID,lastname)=>{
   if((firtsname!=null && lastname!=null) &&(firtsname!=null || lastname!=null)){
@@ -101,7 +111,7 @@ const DeleteItems=()=>{}
           
      </div>
 </div>
-       <div class="card m-2" style="width: 18rem;" v-for="user in users" :key="user.id">
+       <div class="card m-2" style="width: 18rem;" v-for="(user,index) in users" :key="user.id">
  <!--<img src="..." class="card-img-top" alt="...">-->
          <i class="fa-solid fa-user-secret" style="font-size: 70px;"></i>
     <div class="card-body">

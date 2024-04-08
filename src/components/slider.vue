@@ -1,6 +1,6 @@
 <script setup>
 import data from '../Data';
-import fetch from '../About.vue';
+import fetch from '../user.vue';
 import { ref } from 'vue';
 const valores = ref([]);
 console.log(data.value.length);

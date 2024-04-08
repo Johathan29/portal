@@ -5,7 +5,7 @@ import App from './App.vue';
 import quienessomos from './page/quienes-somos.vue';
 import baseLegal from './page/base-legal.vue';
 import Home from './components/Home.vue';
-//import Mascotas from './Mascotas.vue';
+import Mascotas from './Mascotas.vue';
 import navegation from './navegation';
 import PathNotFound from './PathNotFound.vue';
 
@@ -16,7 +16,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 const routes = [
   { path: '/', component: Home },
   { path: '/quienes-somos', component: quienessomos },
-  { path: '/base-legal', component: baseLegal },
+  { path: '/base-legal', component: Mascotas },
   { path: '/:pathMatch(.*)*', component: PathNotFound },
 ];
 const router = createRouter({
