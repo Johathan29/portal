@@ -1,9 +1,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 const users = ref(null);
-const capturar = ref();
 const itemUser = ref([]);
-const valorId= ref();
 const grupoItem = ref([]);
   //https://jsonplaceholder.typicode.com/users
 onMounted(async () => {
@@ -13,7 +11,8 @@ onMounted(async () => {
 });
 //añadir nueva informacion de usuario
 const AddUser=(lastname, firtsname,email)=>{
-  const id=users.value.length+1;
+  if(lastname!=null || firtsname!=null || email!=null){
+    const id=users.value.length+1;
   const formulario={
     id:id,
     name:firtsname,
@@ -21,8 +20,9 @@ const AddUser=(lastname, firtsname,email)=>{
     email:email,
   }
   users.value.push(formulario);
+  }
+  
 }
-//valorId.value.push(users.value.find((item) => item.id === id).id);
 const detalleUser = (index) => {
  /* setTimeout(() => {
    grupoItem.value="";
@@ -32,30 +32,14 @@ const detalleUser = (index) => {
   grupoItem.value = itemUser.value;
 };
 const Delete = (index) => {
-  if (index === 0) {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: 'Deleted!',
-          text: 'Your file has been deleted.',
-          icon: 'success',
-        });
-        users.value.shift();
-        
-       // valorId.value.shift();
+ 
+      if (index) {
+       
+        users.value.shift((item) => item.id === index)
       }
-    });
-  } else {
-    users.value.splice(index);
-   // valorId.value.splice(index);
+   
+   else {
+    users.value.splice((item) => item.id === index)
   }
 };
 const UpdateItems=(firtsname,ID,lastname)=>{
@@ -82,38 +66,41 @@ const DeleteItems=()=>{}
         <button type="button" class="btn btn-primary" style="width: 30%;height: 4rem;"  data-bs-toggle="modal" data-bs-target="#addnew" data-bs-whatever="@getbootstrap">Añadir nuevo Testimonio</button>
         <div id="addnew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
           class=" modal fade">
-
-        <div class="modal-dialog">
-           <div class="modal-content">
-              <div class="modal-header">
-                <h2 class="modal-title fs-5" >Completar Formulario</h2>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                 </div>
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+             <h2 class="modal-title fs-5" >Completar Formulario</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+            <form>
                <div class="modal-body">
-                 
+               
                      <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Firts Name:</label>
-                        <input type="text" class="form-control" id="recipient-name" 
-                            v-model="firtsname" >
+                        <input type="text" class="form-control"  id="recipient-name" 
+                            v-model="firtsname" required="true">
                        </div>
                      <div class="mb-3">
                         <label for="message-text" class="col-form-label">Last Name:</label>
-                        <input class="form-control" type="text" id="message-text" v-model="lastname" >
+                        <input class="form-control" required type="text" id="message-text" v-model="lastname" >
                       </div>
                       <div class="mb-3">
                         <label for="message-text" class="col-form-label">Last Name:</label>
                         <input class="form-control" type="email" id="message-text" v-model="email" >
                       </div>
                   </div>
-                
-               <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Delete</button>
-                  <button type="button" class="btn btn-primary" v-on:click="AddUser(firtsname,lastname,email )">Send message</button>
+                  
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Exit</button>
+                    <button type="submit" class="btn btn-primary" v-on:click="AddUser(firtsname,lastname,email )">Add</button>
+                   </div>
+                   </form>
                 </div>
-            </div>
+                
           </div> 
+          
      </div>
-     </div>
+</div>
        <div class="card m-2" style="width: 18rem;" v-for="user in users" :key="user.id">
  <!--<img src="..." class="card-img-top" alt="...">-->
          <i class="fa-solid fa-user-secret" style="font-size: 70px;"></i>
@@ -145,7 +132,7 @@ const DeleteItems=()=>{}
                             @input="firtsname= $event.target.value" >
                        </div>
                      <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Last Name:</label>
+                        <label for="message-text"  class="col-form-label">Last Name:</label>
                         <input class="form-control" type="text" id="message-text" :value="user.username"
                          @input="lastname= $event.target.value" >
                       </div>
