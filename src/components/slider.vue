@@ -23,6 +23,7 @@ const detalleUser = () => {
         :key="index"
         :class="[index == 0 ? activeclass : 'carousel-item']"
         data-bs-interval="10000"
+        
       >
         <div v-bind:id="index">
           <img v-bind:src="item.Imagen" class="d-block w-100" alt="..." />

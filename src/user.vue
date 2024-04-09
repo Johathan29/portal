@@ -147,7 +147,7 @@ const UpdateItems=(firtsname,ID,lastname)=>
           
      </div>
 </div>
-       <div class="card m-2" style="width: 18rem;" v-for="(user,index) in users" :key="user.id">
+       <div class="card m-2" id="my-table"     :current-page="currentPage" style="width: 18rem;" v-for="(user,index) in users" :key="user.id">
  <!--<img src="..." class="card-img-top" alt="...">-->
          <i class="fa-solid fa-user-secret" style="font-size: 70px;"></i>
     <div class="card-body">
@@ -194,6 +194,14 @@ const UpdateItems=(firtsname,ID,lastname)=>
       </div>
     </div>
    </div>
+</div>
+<div class="overflow-auto">
+    <b-pagination
+      v-model="currentPage"
+      :total-rows="rows"
+      :per-page="perPage"
+      aria-controls="my-table"
+    ></b-pagination>
 </div>
 </div>
 

@@ -107,7 +107,7 @@ const auto = (id) => {
     </div>
   </section>
   <section>
-    <div class="container row">
+    <div class="container row" v-if="favoritoAnimales.length>=1">
       <h3>My favorite</h3>
 
       <template v-for="(item, index) in favoritoAnimales" :key="item.Id">
@@ -116,7 +116,7 @@ const auto = (id) => {
           <div class="card-body">
             <h5 class="card-title">{{ item.Nombre }} {{ item.Id }}</h5>
             <p class="card-text">
-              {{ item.Tipo }}
+              {{ item.Tipo }}{{ favoritoAnimales.length }}
             </p>
             <div class="d-flex" style="justify-content: space-around">
               <a @click="Delete(index)" class="btn btn-danger">Eliminar</a>
