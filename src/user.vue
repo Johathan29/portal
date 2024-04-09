@@ -1,4 +1,5 @@
 <script setup>
+
 import { ref, computed, onMounted } from 'vue';
 const users = ref(null);
 const itemUser = ref([]);
@@ -88,15 +89,24 @@ const Delete = (index) => {
 // update de user
 const UpdateItems=(firtsname,ID,lastname)=>
 {
-  if((firtsname!=null || lastname!=null))
+  if(firtsname!=null )
   {
-    users.value.filter(item =>item.id == ID ? item.name=firtsname : '')
-    users.value.filter(item =>item.id == ID ? item.username=lastname : '')
+    users.value.filter(item =>item.id == ID ? item.name=firtsname : item.name)
+
   }
   else
   {
-    users.value.filter(item =>item.id == ID ? item.name :'')
-    users.value.filter(item =>item.id == ID ? item.username : '')
+    users.value.filter(item =>item.id == ID ? item.name :item.name)
+    
+  }
+  if( lastname!=null)
+  {
+    
+    users.value.filter(item =>item.id == ID ? item.username=lastname : item.username)
+  }
+  else
+  {
+    users.value.filter(item =>item.id == ID ? item.username : item.username)
   }
 
 } 
@@ -187,7 +197,7 @@ const UpdateItems=(firtsname,ID,lastname)=>
                 
                <div class="modal-footer">
                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal" v-on:click="Delete(index)">Delete</button>
-                  <button type="button" class="btn btn-success" v-on:click="UpdateItems(firtsname,user.id,lastname )">Update</button>
+                  <button type="button" class="btn btn-success" v-on:click="UpdateItems(firtsname,user.id,lastname)">Update</button>
                 </div>
             </div>
           </div>
@@ -253,7 +263,52 @@ const UpdateItems=(firtsname,ID,lastname)=>
       </tr>
     </tbody>
   </table>-->
+
+  <div class="overflow-auto">
+    <b-pagination
+      v-model="currentPage"
+      :total-rows="rows"
+      :per-page="perPage"
+      aria-controls="my-table"
+    ></b-pagination>
+
+    <p class="mt-3">Current Page: {{ currentPage }}</p>
+
+    <b-table
+      id="my-table"
+      :items="items"
+      :per-page="perPage"
+      :current-page="currentPage"
+      small
+    ></b-table>
+  </div>
 </template>
+<script>
+  export default {
+    data() {
+      return {
+        perPage: 3,
+        currentPage: 1,
+        items: [
+          { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
+          { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
+          { id: 3, first_name: 'Barney', last_name: 'Rubble' },
+          { id: 4, first_name: 'Betty', last_name: 'Rubble' },
+          { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
+          { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
+          { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
+          { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
+          { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' }
+        ]
+      }
+    },
+    computed: {
+      rows() {
+        return this.items.length
+      }
+    }
+  }
+</script>
 <style>
 th {
     width: 135px!important;
