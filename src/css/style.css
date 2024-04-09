@@ -4514,11 +4514,11 @@ button.is-primary:hover {
   background-color: #00244d;
 }
 button.is-secondary {
-  background: hsl(358, 85%, 53%);
-  color: hsl(0, 0%, 100%);
+  background: #fff;
+  color: hsl(160deg 26.09% 18.04%);
 }
 button.is-secondary:hover {
-  background-color: #d41118;
+  background-color: #fff;
 }
 button.is-rounded {
   border-radius: 0.25rem;

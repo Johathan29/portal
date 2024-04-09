@@ -86,13 +86,16 @@ const Delete = (index) => {
   
 };
 // update de user
-const UpdateItems=(firtsname,ID,lastname)=>{
-  if((firtsname!=null || lastname!=null)){
+const UpdateItems=(firtsname,ID,lastname)=>
+{
+  if((firtsname!=null || lastname!=null))
+  {
     users.value.filter(item =>item.id == ID ? item.name=firtsname : '')
     users.value.filter(item =>item.id == ID ? item.username=lastname : '')
   }
-  else{
-    users.value.filter(item =>item.id == ID ? item.name:'')
+  else
+  {
+    users.value.filter(item =>item.id == ID ? item.name :'')
     users.value.filter(item =>item.id == ID ? item.username : '')
   }
 
