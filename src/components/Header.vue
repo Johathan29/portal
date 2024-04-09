@@ -15,54 +15,7 @@ return atributo=='d-md-block'? element.classList.add('d-block'):
 </script>
 <template>
   <header>
-    <div class="top-bar py-2">
-      <div class="container">
-        <details class="details">
-          <summary class="d-flex cursor-pointer">
-            <img
-              src="img/icons/icon-dominican-flag.svg"
-              alt=""
-              height="16"
-              class="me-2"
-            />
-            <p>
-              Esta es una web oficial del Gobierno de la República Dominicana.
-              <span class="text-primary text-underline text-semibold"
-                >Asi es como puedes saberlo <i class="fas fa-chevron-down"></i
-              ></span>
-            </p>
-          </summary>
-          <div class="row py-3">
-            <div class="col-12 col-md-6 d-flex gap-1">
-              <img src="img/icons/icon-cupula.png" alt="" height="32" />
-              <div>
-                <p class="text-semibold text-primary">
-                  Los sitios web oficiales utilizan .gob.do, .gov.do o .mil.do
-                </p>
-                <p>
-                  Un sitio .gob.do, .gov.do o .mil.do significa que pertenece a
-                  una organización oficial del Estado dominicano.
-                </p>
-              </div>
-            </div>
-            <div class="col-12 col-md-6 d-flex gap-1">
-              <img src="img/icons/icon-lock.png" alt="" height="32" />
-              <div>
-                <p class="text-semibold text-primary">
-                  Los sitios web oficiales .gob.do, .gov.do o .mil.do seguros
-                  usan HTTPS
-                </p>
-                <p>
-                  Un candado (🔒) o https:// significa que estás conectado a un
-                  sitio seguro dentro de .gob.do o .gov.do. Comparte información
-                  confidencial solo en los sitios seguros de .gob.do o gov.do.
-                </p>
-              </div>
-            </div>
-          </div>
-        </details>
-      </div>
-    </div>
+   
     <div class="logo-area py-4">
       <div class="container">
         <div class="d-flex justify-content-between">

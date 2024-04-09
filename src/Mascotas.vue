@@ -41,7 +41,7 @@ const add = (id) => {
   return favoritoAnimales.value.push(mascota.value);
 };
 const Delete = (index) => {
-  if (index === 0) {
+  if (index ) {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -62,7 +62,7 @@ const Delete = (index) => {
       }
     });
   } else {
-    favoritoAnimales.value.splice(index);
+    favoritoAnimales.value.splice(index,1);
     valorId.value.splice(index);
   }
 };

@@ -5,13 +5,14 @@ const itemUser = ref([]);
 const grupoItem = ref([]);
 const update=ref([])
   //https://jsonplaceholder.typicode.com/users
-onMounted(async () => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/users');
-  users.value = await response.json();
-  console.log(users.value)
-});
+  onMounted(async () =>
+  {
+    const response = await fetch('https://jsonplaceholder.typicode.com/users');
+    users.value = await response.json();
+    console.log(users.value)
+    });
 
-//añadir nueva informacion de usuario
+//add infor in user
 const AddUser=(lastname, firtsname,email)=>{
   if(lastname!=null || firtsname!=null || email!=null)
   {
@@ -36,24 +37,57 @@ const detalleUser = (index) => {
   itemUser.value = users.value.find((item) => item.id === index);
   grupoItem.value = itemUser.value;
 };
+// Delete items de user
 const Delete = (index) => {
- 
-  itemUser.value = users.value.find((item) => item.id === index);
-  console.log(itemUser.value.id)
-  if(index===0 )
-  {
-   users.value.shift();
+  if (index===0 ) {
+    Swal.fire({
+      title: 'Estas Seguro?',
+      text: "¡No podrás revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Eliminarlo!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Eliminado!',
+          text: 'Tu archivo ha sido eliminado',
+          icon: 'success',
+        });
+        users.value.shift();
+        
+      }
+    });
+  }
+   else 
+    {
+      Swal.fire({
+      title: 'Estas Seguro?',
+      text: "¡No podrás revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Eliminarlo!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Eliminado!',
+          text: 'Tu archivo ha sido eliminado',
+          icon: 'success',
+        });
+        users.value.splice(index,1 );
+        
+      }
+    });
 
-  }
-  else
-  {
-    users.value.slice(item => item.id===index);
-  }
-    
- return users.value;
+    }
+  
 };
+// update de user
 const UpdateItems=(firtsname,ID,lastname)=>{
-  if((firtsname!=null && lastname!=null) &&(firtsname!=null || lastname!=null)){
+  if((firtsname!=null || lastname!=null)){
     users.value.filter(item =>item.id == ID ? item.name=firtsname : '')
     users.value.filter(item =>item.id == ID ? item.username=lastname : '')
   }
@@ -63,7 +97,6 @@ const UpdateItems=(firtsname,ID,lastname)=>{
   }
 
 } 
-const DeleteItems=()=>{}
 </script>
 
 <template>
@@ -102,7 +135,7 @@ const DeleteItems=()=>{}
                   
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Exit</button>
-                    <button type="submit" class="btn btn-primary" v-on:click="AddUser(firtsname,lastname,email )">Add</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" v-on:click="AddUser(firtsname,lastname,email )">Add</button>
                    </div>
                    </form>
                 </div>
@@ -150,8 +183,8 @@ const DeleteItems=()=>{}
                   </div>
                 
                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" v-on:click="Delete(user.id)">Delete</button>
-                  <button type="button" class="btn btn-primary" v-on:click="UpdateItems(firtsname,user.id,lastname )">Send message</button>
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal" v-on:click="Delete(index)">Delete</button>
+                  <button type="button" class="btn btn-success" v-on:click="UpdateItems(firtsname,user.id,lastname )">Update</button>
                 </div>
             </div>
           </div>
@@ -214,11 +247,18 @@ const DeleteItems=()=>{}
 th {
     width: 135px!important;
 }
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{
+  background-color: #76bd51!important;
+  border: none!important;;
+}
 td.alert.alert-primary {
   float: inline-start;
   margin-left: -17rem;
   background: aliceblue;
  
+}
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm:focus{
+  box-shadow: none!important;
 }
 .title {
   color: #fff;
@@ -242,4 +282,12 @@ i.fa-solid.fa-user-secret {
     padding: 2rem;
     background: #f0f6ff;
 }
+button.btn.btn-success{
+  background-color: #76bd51!important;
+  border:#76bd51;
+  }
+  button.btn.btn-success:hover{
+  background-color: #6eb219 !important;
+  border:#76bd51;
+  }
 </style>

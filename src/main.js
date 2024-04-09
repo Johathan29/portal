@@ -12,7 +12,7 @@ import PathNotFound from './PathNotFound.vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 //import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 //import 'bootstrap/dist/css/bootstrap.css';
-//import 'bootstrap-vue/dist/bootstrap-vue.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 const routes = [
   { path: '/', component: Home },
   { path: '/quienes-somos', component: quienessomos },

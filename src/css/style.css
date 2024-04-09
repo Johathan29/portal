@@ -4264,16 +4264,17 @@ svg {
 blockquote.blockquote {
   background: hsl(0, 0%, 100%);
   cursor: pointer;
-  color: hsl(212, 100%, 23%);
+  color: hsl(158, 26%, 18%);
   padding: 1rem;
   display: flex;
   gap: 0.5rem;
   margin-bottom: 1rem;
   align-items: center;
   border-radius: 0.25rem;
-  border-left: 4px solid hsl(358, 85%, 53%);
+  /*border-left: 4px solid hsl(160, 41%, 21%);
+  border-right: 4px solid hsl(160, 41%, 21%);*/
   font-weight: 600;
-  transition: box-shadow 400ms ease-in;
+  transition: box-shadow 600ms ease-in;
 }
 .card h4,
 blockquote.blockquote h4 {
@@ -4384,7 +4385,7 @@ h2,
 h3,
 h4,
 h5 {
-  color: hsl(212, 100%, 23%);
+  color: hsl(158, 26%, 18%);
   margin-bottom: 0.5rem;
 }
 
@@ -4941,7 +4942,7 @@ blockquote.blockquote {
 
 .logo-area {
   color: hsl(0, 0%, 100%);
-  background-color: hsl(212, 100%, 23%);
+  background-color: hsl(158, 26%, 18%);
 }
 
 .logo {
@@ -5368,7 +5369,7 @@ section {
 /* || Pie de página */
 footer {
   padding-block: 2rem;
-  background: hsl(212, 100%, 23%);
+  background: hsl(158, 26%, 18%);
   color: hsl(0, 0%, 100%);
 }
 @media screen and (min-width: 40rem) {
