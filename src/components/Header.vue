@@ -33,7 +33,7 @@ return atributo=='d-md-block'? element.classList.add('d-block'):
               </button>
             </div>
             <a href="#">
-              <img src="img/icons/icon-grid.svg" alt="" height="32" />
+              <img src="" alt="" height="32" />
             </a>
           </div>
           <div class="search-box d-flex d-md-none">

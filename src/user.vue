@@ -40,7 +40,8 @@ const detalleUser = (index) => {
 };
 // Delete items de user
 const Delete = (index) => {
-  if (index===0 ) {
+  if (index===0 )
+   {
     Swal.fire({
       title: 'Estas Seguro?',
       text: "¡No podrás revertir esto!",
@@ -157,7 +158,7 @@ const UpdateItems=(firtsname,ID,lastname)=>
           
      </div>
 </div>
-       <div class="card m-2" id="my-table"     :current-page="currentPage" style="width: 18rem;" v-for="(user,index) in users" :key="user.id">
+       <div class="card m-2" :current-page="currentPage" style="width: 18rem;" v-for="(user,index) in users" :key="user.id" v-bind:class="index>=4 ? 'd-none':''"  >
  <!--<img src="..." class="card-img-top" alt="...">-->
          <i class="fa-solid fa-user-secret" style="font-size: 70px;"></i>
     <div class="card-body">
@@ -273,38 +274,23 @@ const UpdateItems=(firtsname,ID,lastname)=>
     ></b-pagination>
 
     <p class="mt-3">Current Page: {{ currentPage }}</p>
-
-    <b-table
-      id="my-table"
-      :items="items"
-      :per-page="perPage"
-      :current-page="currentPage"
-      small
-    ></b-table>
+    
+{{ items }}
+    <div>
+    <b-table striped hover :items="items"></b-table>
+  </div>
   </div>
 </template>
 <script>
   export default {
     data() {
       return {
-        perPage: 3,
-        currentPage: 1,
         items: [
-          { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
-          { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
-          { id: 3, first_name: 'Barney', last_name: 'Rubble' },
-          { id: 4, first_name: 'Betty', last_name: 'Rubble' },
-          { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
-          { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
-          { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
-          { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
-          { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' }
+          { age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
+          { age: 21, first_name: 'Larsen', last_name: 'Shaw' },
+          { age: 89, first_name: 'Geneva', last_name: 'Wilson' },
+          { age: 38, first_name: 'Jami', last_name: 'Carney' }
         ]
-      }
-    },
-    computed: {
-      rows() {
-        return this.items.length
       }
     }
   }

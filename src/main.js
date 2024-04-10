@@ -10,7 +10,7 @@ import navegation from './navegation';
 import PathNotFound from './PathNotFound.vue';
 
 import { createRouter, createWebHashHistory } from 'vue-router';
-//import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+//import { BootstrapVue} from 'bootstrap-vue';
 //import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 const routes = [
@@ -23,7 +23,9 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes,
 });
+
 const app = createApp(App);
+
 
 app.use(router);
 
