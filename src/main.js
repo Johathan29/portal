@@ -5,6 +5,7 @@ import App from './App.vue';
 import quienessomos from './page/quienes-somos.vue';
 import baseLegal from './page/base-legal.vue';
 import Home from './page/Home.vue';
+import Testimonio from './page/testimonio.vue';
 import Mascotas from './Mascotas.vue';
 import navegation from './navegation';
 import PathNotFound from './PathNotFound.vue';
@@ -16,6 +17,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 const routes = [
   { path: '/', component: Home },
   { path: '/quienes-somos', component: quienessomos },
+  { path: '/testimonio', component: Testimonio },
   { path: '/base-legal', component: Mascotas },
   { path: '/:pathMatch(.*)*', component: PathNotFound },
 ];
