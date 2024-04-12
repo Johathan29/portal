@@ -1,47 +1,22 @@
 <script setup>
 
+import { View } from 'typeorm/schema-builder/view/View';
 import { ref, computed, onMounted } from 'vue';
 const users = ref(null);
 const itemUser = ref([]);
 const grupoItem = ref([]);
+const dnone=ref();
 const update=ref([])
   //https://jsonplaceholder.typicode.com/users
   onMounted(async () =>
   {
     const response = await fetch('https://jsonplaceholder.typicode.com/users');
     users.value = await response.json();
-    console.log(users)
+    console.log(users.value)
     });
 
 //add infor in user
-const AddUser=(lastname, firtsname,email)=>{
-  const verificarEmail=users.value.filter(item => item.email==email);
 
-  if(verificarEmail.length>= 1)
-  {
-    Swal.fire({
-      title: 'Error al Registrarse?',
-      text: "¡esta duplicado el correo electrónico!",
-      icon: 'error',
-      showCancelButton: false,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, Eliminarlo!',
-    });
-  }else{
-    const id=users.value.length+1;
-    const formulario=
-    {
-    id:id,
-    name:firtsname,
-    username: lastname,
-    email:email,
-  }
-  users.value.push(formulario);
-  update.value.push(users.value.find((animal) => animal.id === id).id);
-  }
-  
-}
 const detalleUser = (index) => {
  /* setTimeout(() => {
    grupoItem.value="";
@@ -50,79 +25,20 @@ const detalleUser = (index) => {
   itemUser.value = users.value.find((item) => item.id === index);
   grupoItem.value = itemUser.value;
 };
-// Delete items de user
-const Delete = (index) => {
-  if (index===0 )
-   {
-    Swal.fire({
-      title: 'Estas Seguro?',
-      text: "¡No podrás revertir esto!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, Eliminarlo!',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: 'Eliminado!',
-          text: 'Tu archivo ha sido eliminado',
-          icon: 'success',
-        });
-        users.value.shift();
-        
-      }
-    });
-  }
-   else 
-    {
-      Swal.fire({
-      title: 'Estas Seguro?',
-      text: "¡No podrás revertir esto!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, Eliminarlo!',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: 'Eliminado!',
-          text: 'Tu archivo ha sido eliminado',
-          icon: 'success',
-        });
-        users.value.splice(index,1 );
-        
-      }
-    });
+const viewaddress=(verificar)=>{
 
-    }
-  
-};
-// update de user
-const UpdateItems=(firtsname,ID,lastname)=>
-{
-  if(firtsname!=null )
-  {
-    users.value.filter(item =>item.id == ID ? item.name=firtsname : item.name)
-
+  if(dnone.value=='d-none'){
+    dnone.value='d-block';
+   console.log(dnone.value, verificar);
+   
   }
   else
   {
-    users.value.filter(item =>item.id == ID ? item.name :item.name)
-    
+    dnone.value='d-none';
+    console.log(dnone.value, verificar)
   }
-  if( lastname!=null)
-  {
-    
-    users.value.filter(item =>item.id == ID ? item.username=lastname : item.username)
-  }
-  else
-  {
-    users.value.filter(item =>item.id == ID ? item.username : item.username)
-  }
+}
 
-} 
 </script>
 
 <template>
@@ -146,27 +62,27 @@ const UpdateItems=(firtsname,ID,lastname)=>
                  class=" modal fade" v-if="user.id === grupoItem.id">
 
                     <div class="modal-dialog">
-                      <div class="modal-content">
+                      <div class="modal-content" style="text-align: left;">
                           <div class="modal-header">
                             <h2 class="modal-title fs-5" >Detalles de datos </h2>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                              <div class="mb-3">
-                                  <label for="recipient-name" class="col-form-label">Firts Name:</label>
-                                  <input type="text" class="form-control" id="recipient-name" :value="user.name"
-                                  @input="firtsname= $event.target.value" >
-                              </div>
-                              <div class="mb-3">
-                                  <label for="message-text"  class="col-form-label">Last Name:</label>
-                                  <input class="form-control" type="text" id="message-text" :value="user.username"
-                                  @input="lastname= $event.target.value" >
-                              </div>
+                              <label for="recipient-name" class="col-form-label">Firts Name:</label> {{ user.name}}<br/>
+                              <label for="message-text"  class="col-form-label">Last Name:</label> {{ user.username }}<br/>
+                              <label for="message-text"  class="col-form-label">Email:</label> {{ user.email }}<br/>
+                              <label for="message-text"  class="col-form-label" style="display: flex;align-items: baseline;" v-on:click="dnone=='d-none' ? dnone='d-none' : dnone='d-block'"><p>Address:</p> <i class="fas fa-sort-down "></i></label> 
+                              <div :class="dnone='d-none'" > 
+                              <p> calle: {{user.address.street }}</p>
+                              <p> Suite: {{user.address.suite }}</p>
+                              <p> Ciudad: {{user.address.city }}</p>
+                              <p> Codigo Postal: {{user.address.zipcode }}</p>
+                             </div>
+                              <label for="message-text"  class="col-form-label">Last Name:</label> {{ user.company }}<br/>  
+
+                             
                           </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" v-on:click="Delete(index)">Delete</button>
-                            <button type="button" class="btn btn-success" v-on:click="UpdateItems(firtsname,user.id,lastname)">Update</button>
-                        </div>
+                         
                       </div>
                     </div>
                   </div>
