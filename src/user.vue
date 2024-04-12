@@ -5,7 +5,7 @@ import { ref, computed, onMounted } from 'vue';
 const users = ref(null);
 const itemUser = ref([]);
 const grupoItem = ref([]);
-const dnone=ref();
+const dnone=ref('d-none');
 const update=ref([])
   //https://jsonplaceholder.typicode.com/users
   onMounted(async () =>
@@ -25,18 +25,9 @@ const detalleUser = (index) => {
   itemUser.value = users.value.find((item) => item.id === index);
   grupoItem.value = itemUser.value;
 };
-const viewaddress=(verificar)=>{
-
-  if(dnone.value=='d-none'){
-    dnone.value='d-block';
-   console.log(dnone.value, verificar);
-   
-  }
-  else
-  {
-    dnone.value='d-none';
-    console.log(dnone.value, verificar)
-  }
+const viewaddress=()=>{
+  return dnone.value =='d-block' ? dnone.value='d-none' : dnone.value='d-block';
+ 
 }
 
 </script>
@@ -71,8 +62,8 @@ const viewaddress=(verificar)=>{
                               <label for="recipient-name" class="col-form-label">Firts Name:</label> {{ user.name}}<br/>
                               <label for="message-text"  class="col-form-label">Last Name:</label> {{ user.username }}<br/>
                               <label for="message-text"  class="col-form-label">Email:</label> {{ user.email }}<br/>
-                              <label for="message-text"  class="col-form-label" style="display: flex;align-items: baseline;" v-on:click="dnone=='d-none' ? dnone='d-none' : dnone='d-block'"><p>Address:</p> <i class="fas fa-sort-down "></i></label> 
-                              <div :class="dnone='d-none'" > 
+                              <label for="message-text"  class="col-form-label" style="display: flex;align-items: baseline;" v-on:click="viewaddress"><p>Address:</p> <i class="fas fa-sort-down "></i></label> 
+                              <div :class="dnone" > 
                               <p> calle: {{user.address.street }}</p>
                               <p> Suite: {{user.address.suite }}</p>
                               <p> Ciudad: {{user.address.city }}</p>
