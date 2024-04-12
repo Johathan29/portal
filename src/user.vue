@@ -6,6 +6,7 @@ const users = ref(null);
 const itemUser = ref([]);
 const grupoItem = ref([]);
 const dnone=ref('d-none');
+const classtransform=ref();
 const update=ref([])
   //https://jsonplaceholder.typicode.com/users
   onMounted(async () =>
@@ -26,8 +27,11 @@ const detalleUser = (index) => {
   grupoItem.value = itemUser.value;
 };
 const viewaddress=()=>{
-  return dnone.value =='d-block' ? dnone.value='d-none' : dnone.value='d-block';
- 
+  
+   
+   dnone.value =='d-block' ? dnone.value='d-none' : dnone.value='d-block';
+   dnone.value =='d-block' ?  classtransform.value='classtransform' :  classtransform.value='';
+
 }
 
 </script>
@@ -62,7 +66,7 @@ const viewaddress=()=>{
                               <label for="recipient-name" class="col-form-label">Firts Name:</label> {{ user.name}}<br/>
                               <label for="message-text"  class="col-form-label">Last Name:</label> {{ user.username }}<br/>
                               <label for="message-text"  class="col-form-label">Email:</label> {{ user.email }}<br/>
-                              <label for="message-text"  class="col-form-label" style="display: flex;align-items: baseline;" v-on:click="viewaddress"><p>Address:</p> <i class="fas fa-sort-down "></i></label> 
+                              <label for="message-text"  class="col-form-label" style="display: flex;align-items: baseline;" v-on:click="viewaddress"><p>Address:</p> <i :class="'fas fa-sort-down ' + classtransform "></i></label> 
                               <div :class="dnone" > 
                               <p> calle: {{user.address.street }}</p>
                               <p> Suite: {{user.address.suite }}</p>
@@ -167,6 +171,9 @@ td.alert.alert-primary {
 div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm:focus{
   box-shadow: none!important;
 }
+.classtransform
+{
+  transform: rotate(180deg);}
 .title {
   color: #fff;
   background: #195062;
