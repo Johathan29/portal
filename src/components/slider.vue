@@ -22,6 +22,7 @@ const detalleUser = () => {
         v-for="(item, index) in valores"
         :key="index"
         :class="[index == 0 ? activeclass : 'carousel-item']"
+        v-bind:style="[]"
         data-bs-interval="10000"
         
       >

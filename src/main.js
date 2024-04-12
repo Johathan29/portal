@@ -4,7 +4,7 @@ import './style.css';
 import App from './App.vue';
 import quienessomos from './page/quienes-somos.vue';
 import baseLegal from './page/base-legal.vue';
-import Home from './components/Home.vue';
+import Home from './page/Home.vue';
 import Mascotas from './Mascotas.vue';
 import navegation from './navegation';
 import PathNotFound from './PathNotFound.vue';

@@ -277,7 +277,28 @@ const UpdateItems=(firtsname,ID,lastname)=>
     
 {{ items }}
     <div>
-    <b-table striped hover :items="items"></b-table>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+    
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
+        <tbody  :per-page="perPage"
+      :current-page="currentPage">
+            <tr v-for="item in items" :key="item.id" >
+        
+            <td>{{ item.first_name}}</td>
+            <td>{{ item.last_name }}</td>
+            <td>{{ item.age }}</td>
+            </tr>
+          </tbody>
+      </table>
+    <table striped hover :items="items">
+    
+    </table>
   </div>
   </div>
 </template>
@@ -285,12 +306,24 @@ const UpdateItems=(firtsname,ID,lastname)=>
   export default {
     data() {
       return {
+        perPage: 3,
+        currentPage: 1,
         items: [
-          { age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
-          { age: 21, first_name: 'Larsen', last_name: 'Shaw' },
-          { age: 89, first_name: 'Geneva', last_name: 'Wilson' },
-          { age: 38, first_name: 'Jami', last_name: 'Carney' }
+           { id: 1, first_name: 'Fred', last_name: 'Flintstone', age: 40 },
+          { id: 2, first_name: 'Wilma', last_name: 'Flintstone' , age: 30 },
+          { id: 3, first_name: 'Barney', last_name: 'Rubble' , age: 20 },
+          { id: 4, first_name: 'Betty', last_name: 'Rubble', age: 40  },
+          { id: 5, first_name: 'Pebbles', last_name: 'Flintstone', age: 70  },
+          { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' , age: 44 },
+          { id: 7, first_name: 'The Great', last_name: 'Gazzoo' , age: 30 },
+          { id: 8, first_name: 'Rockhead', last_name: 'Slate', age: 29  },
+          { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' , age: 10 }
         ]
+      }
+    },
+    computed: {
+      rows() {
+        return this.items.length;
       }
     }
   }
