@@ -114,7 +114,7 @@ const UpdateItems=(firtsname,ID,lastname)=>
 <template>
   <section class="title-section">
     <div class="container">
-      <h2>Testimonio</h2>
+      <h2>Testimonio de los clientes</h2>
       <div class="row">
        <!----> 
        <div class="w-100">
