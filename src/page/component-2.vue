@@ -1,21 +1,17 @@
-
+<script setup></script>
 <template>
-{{ monto }} 
   <p>
       Amount: {{ monto }} <br />
       Taxes: {{ taxes }}
     </p>
+
 </template>
 <script>
 export default {
-  prop: {
-    monto : String,
+  props: {
+    monto : Number,
+    taxes: Number
   },
-
-}
+ 
+  };
 </script>
-<style scoped>
-.read-the-docs {
-  color: #888;
-}
-</style>

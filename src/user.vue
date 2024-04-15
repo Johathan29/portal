@@ -1,8 +1,12 @@
 <script setup>
-
+import { DataSource } from "typeorm";
+import HelloWorld from "./page/component-2.vue";
+import Baselegal from "./page/base-legal.vue"
+import Testimonio  from "./page/testimonio.vue";
 import { View } from 'typeorm/schema-builder/view/View';
 import { ref, computed, onMounted } from 'vue';
 const users = ref(null);
+
 const itemUser = ref([]);
 const grupoItem = ref([]);
 const dnone=ref('d-none');
@@ -15,25 +19,16 @@ const update=ref([])
     users.value = await response.json();
     console.log(users.value)
     });
-
-//add infor in user
-
+//view details of users
 const detalleUser = (index) => {
- /* setTimeout(() => {
-   grupoItem.value="";
-  },'5000');*/
-
   itemUser.value = users.value.find((item) => item.id === index);
   grupoItem.value = itemUser.value;
 };
-const viewaddress=()=>{
-  
-   
+const viewaddress=()=>
+     {
    dnone.value =='d-block' ? dnone.value='d-none' : dnone.value='d-block';
    dnone.value =='d-block' ?  classtransform.value='classtransform' :  classtransform.value='';
-
 }
-
 </script>
 
 <template>
@@ -66,7 +61,7 @@ const viewaddress=()=>{
                               <label for="recipient-name" class="col-form-label">Firts Name:</label> {{ user.name}}<br/>
                               <label for="message-text"  class="col-form-label">Last Name:</label> {{ user.username }}<br/>
                               <label for="message-text"  class="col-form-label">Email:</label> {{ user.email }}<br/>
-                              <label for="message-text"  class="col-form-label" style="display: flex;align-items: baseline;" v-on:click="viewaddress"><p>Address:</p> <i :class="'fas fa-sort-down ' + classtransform "></i></label> 
+                              <label for="message-text"  class="col-form-label" style="display: flex;align-items: baseline;" v-on:click="viewaddress"><p>Address</p> <i :class="'fas fa-sort-down ' + classtransform "></i></label> 
                               <div :class="dnone" > 
                               <p> calle: {{user.address.street }}</p>
                               <p> Suite: {{user.address.suite }}</p>
@@ -89,71 +84,36 @@ const viewaddress=()=>{
             </div>
           </div>
 </section>
- 
 
-  <div class="overflow-auto">
-    <b-pagination
-      v-model="currentPage"
-      :total-rows="rows"
-      :per-page="perPage"
-      aria-controls="my-table"
-    ></b-pagination>
-
-    <p class="mt-3">Current Page: {{ currentPage }}</p>
-    
-
-    <div>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-    
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Email</th>
-          </tr>
-        </thead>
-        <tbody  :per-page="perPage"
-      :current-page="currentPage">
-            <tr v-for="item in items" :key="item.id" >
-        
-            <td>{{ item.first_name}}</td>
-            <td>{{ item.last_name }}</td>
-            <td>{{ item.age }}</td>
-            </tr>
-          </tbody>
-      </table>
-    <table striped hover :items="items">
-    
-    </table>
-  </div>
-  </div>
+<div class="p-4">
+<HelloWorld :monto="totalAmount" :taxes="totalTaxes"/>
+<Baselegal v-on:value-changed="updateTotals" name="Monto de Nuevos prestamos"/>
+</div>
 </template>
 <script>
   export default {
     data() {
       return {
-        perPage: 3,
-        currentPage: 1,
-        items: [
-           { id: 1, first_name: 'Fred', last_name: 'Flintstone', age: 40 },
-          { id: 2, first_name: 'Wilma', last_name: 'Flintstone' , age: 30 },
-          { id: 3, first_name: 'Barney', last_name: 'Rubble' , age: 20 },
-          { id: 4, first_name: 'Betty', last_name: 'Rubble', age: 40  },
-          { id: 5, first_name: 'Pebbles', last_name: 'Flintstone', age: 70  },
-          { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' , age: 44 },
-          { id: 7, first_name: 'The Great', last_name: 'Gazzoo' , age: 30 },
-          { id: 8, first_name: 'Rockhead', last_name: 'Slate', age: 29  },
-          { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' , age: 10 }
-        ]
-      }
-    },
+        totalAmount: 0,
+        totalTaxes: 0,
+       }
+      },
     computed: {
       rows() {
         return this.items.length;
       }
+    },
+    methods: {
+     updateTotals(val, tax) 
+     {
+      this.totalAmount = val;
+      this.totalTaxes = tax;
+     },
+    
     }
   }
 </script>
+
 <style>
 th {
     width: 135px!important;
@@ -204,4 +164,10 @@ button.btn.btn-success{
   background-color: #6eb219 !important;
   border:#76bd51;
   }
+  i.fas.fa-sort-down.classtransform {
+    transition: 0.2s;
+}
+i.fas.fa-sort-down{
+    transition: 0.2s;
+}
 </style>

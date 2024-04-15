@@ -114,7 +114,11 @@ const UpdateItems=(firtsname,ID,lastname)=>
 <template>
   <section class="title-section">
     <div class="container">
-      <h2>Testimonio</h2>
+      {{ name }}
+      <input type="number"
+        v-model.number="value" step="100" />
+      <h2>Testimonio {{ greetingMessage.title }}</h2>
+      <span>{{ greetingMessage.title }}</span>
       <div class="row">
        <!----> 
        <div class="w-100">
@@ -209,3 +213,28 @@ const UpdateItems=(firtsname,ID,lastname)=>
 
 </section>
 </template>
+<script>
+export default {
+  props: {
+    name : String,
+  },
+  data(){
+    return {
+      value: 1500,
+    }
+  },
+computed: {
+    tax: function() {
+      return this.value * 0.2;
+    }
+  },
+  watch: {
+    value: function() {
+      this.$emit('value-changed', this.value, this.tax);
+    }
+  },
+  created: function() {
+    this.$emit('value-changed', this.value, this.tax);
+  }
+};
+</script>
