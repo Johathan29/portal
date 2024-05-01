@@ -34,7 +34,7 @@ export default {
     return {
       value: 1500,
       description:"nuevo tema",
-      contenido:'<strong>hellos</strong>'
+      contenido:''
     }
   },
 computed: {
