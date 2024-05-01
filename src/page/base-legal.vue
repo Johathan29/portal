@@ -20,7 +20,7 @@ import { watch } from 'vue';
         <textarea  class="col-8 m-2" cols="" v-model="contenido" style="color: black;">{{ contenido }}</textarea>
      </label>
         <input type="button" class="btn btn-success"
-        value="Enviar" v-on:click="enviar()"/>
+        value="Enviar" v-on:click="enviar"/>
 </form> 
 </div>
 </template>
@@ -32,8 +32,8 @@ export default {
   },
   data(){
     return {
-      value: 1500,
-      description:"nuevo tema",
+      value: '',
+      description:"",
       contenido:''
     }
   },
@@ -43,6 +43,9 @@ computed: {
     },
     enviar(){
       this.$emit('value-changed', this.value , this.description ,this.contenido);
+      this.contenido="";
+      this.value="" ; 
+      this.description="";
     }
   },
   
