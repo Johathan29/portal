@@ -1,10 +1,10 @@
 const metadata = [
   {
-    titlesmall:'Ministerio de Hacienda',
-    title: 'Ministerio de Hacienda de República Dominicana',
-    phone: '(809)-687-5131',
-    email: 'info@hacienda.gov.do',
-    adress: 'Avenida México #45, Gascue Santo Domingo, D.N., República Dominicana. 10201',
+    titlesmall:'Nombre de el sitio',
+    title: 'es logan de site',
+    phone: '(999)-999-9999',
+    email: 'info@hotmail.com',
+    adress: 'direccion de empresa fisica',
   },
  
 ];

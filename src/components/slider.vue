@@ -1,6 +1,6 @@
 <script setup>
 import data from '../Data';
-import fetch from '../About.vue';
+import fetch from '../user.vue';
 import { ref } from 'vue';
 const valores = ref([]);
 console.log(data.value.length);
@@ -22,7 +22,9 @@ const detalleUser = () => {
         v-for="(item, index) in valores"
         :key="index"
         :class="[index == 0 ? activeclass : 'carousel-item']"
+        v-bind:style="[]"
         data-bs-interval="10000"
+        
       >
         <div v-bind:id="index">
           <img v-bind:src="item.Imagen" class="d-block w-100" alt="..." />

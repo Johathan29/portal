@@ -12,7 +12,7 @@ const router = navegation.value;
           <a href="#"
             ><img
               class="footer-logo"
-              src="../assets/img/logo-hacienda.svg"
+              src="../assets/vue.svg"
               alt=""
               height="112"
           /></a>

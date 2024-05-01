@@ -53,7 +53,7 @@ button:focus-visible {
 }
 
 #app {
-  max-width: 1280px;
+  /*max-width: 1280px;*/
   margin: 0 auto;
   /*padding: 2rem;*/
   text-align: center;
@@ -149,8 +149,8 @@ img.d-block.w-100 {
 }
 
 h1 {
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/6963bbf342d87b3a2150bd8f59682b89.jpg);
-  -webkit-background-clip: text;
+  /*background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/6963bbf342d87b3a2150bd8f59682b89.jpg);
+  -webkit-background-clip: text;*/
   background-size: contain;
   width: 100%;
   text-align: center;
