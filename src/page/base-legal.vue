@@ -29,19 +29,24 @@ export default {
   props: 
   {
     name : String,
+    
   },
-  data(){
+  data()
+  {
     return {
       value: '',
       description:"",
       contenido:''
     }
   },
-computed: {
-    tax() {
+computed: 
+{
+    tax() 
+    {
       return this.value * 0.2;
     },
-    enviar(){
+    enviar()
+    {
       this.$emit('value-changed', this.value , this.description ,this.contenido);
       this.contenido="";
       this.value="" ; 
