@@ -9,7 +9,7 @@ const activeclass = ref('active carousel-item');
 valores.value = data.value;
 valores.value.map((item) => item);
 const detalleUser = () => {
-  console.log('users.value');
+users.value
 };
 </script>
 <template>

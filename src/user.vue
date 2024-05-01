@@ -86,7 +86,7 @@ const viewaddress=()=>
 </section>
 
 <div class="p-4">
-<HelloWorld :monto="totalAmount" :taxes="totalTaxes"/>
+<HelloWorld :monto="totalAmount" :taxes="totalTaxes" :contenido="contenidoend" :description="descriptionend"/>
 <Baselegal v-on:value-changed="updateTotals" name="Monto de Nuevos prestamos"/>
 </div>
 </template>
@@ -96,6 +96,9 @@ const viewaddress=()=>
       return {
         totalAmount: 0,
         totalTaxes: 0,
+        contenidoend:'',
+        descriptionend:''
+
        }
       },
     computed: {
@@ -104,10 +107,12 @@ const viewaddress=()=>
       }
     },
     methods: {
-     updateTotals(val, tax) 
+     updateTotals(val, tax,contenido,description) 
      {
       this.totalAmount = val;
       this.totalTaxes = tax;
+      this.contenidoend=contenido;
+      this.descriptionend=description;
      },
     
     }

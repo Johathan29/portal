@@ -1,8 +1,16 @@
 <script setup></script>
 <template>
-  <p>
+   <p>
       Amount: {{ monto }} <br />
-      Taxes: {{ taxes }}
+      
+    </p>
+    <p>
+     
+      Taxes: {{ taxes }} <br />
+     
+    </p>
+    <p>
+      Contenido: {{ contenido }}
     </p>
 
 </template>
@@ -10,7 +18,8 @@
 export default {
   props: {
     monto : Number,
-    taxes: Number
+    taxes: Number,
+    contenido: String
   },
  
   };

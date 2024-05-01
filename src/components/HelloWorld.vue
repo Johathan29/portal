@@ -3,7 +3,16 @@
 {{ monto }} 
   <p>
       Amount: {{ monto }} <br />
-      Taxes: {{ taxes }}
+      
+    </p>
+    <p>
+     
+      Taxes: {{ taxes }} <br />
+     
+    </p>
+    <p>
+      
+      Contenido: {{ contenido }}
     </p>
 </template>
 <script>

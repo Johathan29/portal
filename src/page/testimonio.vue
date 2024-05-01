@@ -160,7 +160,7 @@ const UpdateItems=(firtsname,ID,lastname)=>
           
      </div>
 </div>
-       <div class="card m-2" :current-page="currentPage" style="width: 18rem;" v-for="(user,index) in users" :key="user.id"   >
+       <div class="card m-2" :current-page="currentPage" style="width: 12rem;" v-for="(user,index) in users" :key="user.id"   >
  <!--<img src="..." class="card-img-top" alt="...">-->
          <i class="fa-solid fa-user-secret" style="font-size: 70px;"></i>
     <div class="card-body">

@@ -1,53 +1,51 @@
-<script setup></script>
+<script setup>
+import { watch } from 'vue';
+</script>
 <template>
 <div>
       {{ name }}
       <form class="form-align">
      <label class=" d-flex col-12 align-center"> 
         <span class="col col-2 d-block">Titulo:</span>
-        <input type="number" class="col-8 m-2"
+        <input type="text" class="col-8 m-2"
         step="100"  v-model.number="value"/>
      </label>
      <label class="d-flex col-12 align-center">
         <span  class="col col-2 d-block"> Descripción:</span> 
         <input type="text" class="col-8 m-2"
-        v-model.text="value" />
+        v-model.text="description" />
      </label>
      <label class="d-flex col-12 align-center" > 
         <span  class="col col-2 d-block">Contenido:</span>  
-        <textarea  class="col-8 m-2" cols="">{{ value }}</textarea>
+        <textarea  class="col-8 m-2" cols="" v-model="contenido" style="color: black;">{{ contenido }}</textarea>
      </label>
         <input type="button" class="btn btn-success"
-        value="Enviar" />
+        value="Enviar" v-on:click="enviar()"/>
 </form> 
 </div>
 </template>
 <script>
 export default {
-  props: {
+  props: 
+  {
     name : String,
   },
   data(){
     return {
       value: 1500,
+      description:"nuevo tema",
+      contenido:'<strong>hellos</strong>'
     }
   },
 computed: {
     tax() {
       return this.value * 0.2;
+    },
+    enviar(){
+      this.$emit('value-changed', this.value , this.description ,this.contenido);
     }
   },
-  watch: {
-    value() {
-      this.$emit('value-changed', this.value , this.tax);
-    console.log(this.tax);
-    },
-    created() {
-    this.$emit('value-changed', this.value, this.tax);
-    console.log(this.value);
-  }
-
-  },
+  
   };
 </script>
 <style>
