@@ -1,26 +1,38 @@
 <script setup></script>
 <template>
    <p>
-      Amount: {{ monto }} <br />
+      Titulo: {{ title }} <br />
       
     </p>
     <p>
      
-      Taxes: {{ taxes }} <br />
+      Descripción: {{ description }} <br />
      
     </p>
     <p>
       Contenido: {{ contenido }}
     </p>
-
+{{ item }}
 </template>
 <script>
 export default {
   props: {
-    monto : Number,
-    taxes: Number,
+
+    title : String,
+    description: String,
     contenido: String
+  
   },
+ watch:{
+values(){
+ item=[{
+  'titulo' : this.title,
+  'descripcion': this.description,
+  'contenido' : this.contenido
+
+}];
+    }
+  }
  
   };
 </script>

@@ -85,19 +85,49 @@ const viewaddress=()=>
           </div>
 </section>
 
-<div class="p-4">
-<HelloWorld :monto="totalAmount" :taxes="totalTaxes" :contenido="contenidoend" :description="descriptionend"/>
-<Baselegal v-on:value-changed="updateTotals" name="Monto de Nuevos prestamos"/>
+<section class="p-4 ">
+  <div class="container">
+    <div class="row">
+  <div class="col-12 d-flex" style="justify-content: space-between;">
+    <h3 :class="['text-primary']">Tareas a pendientes</h3>
+    <button class="text-primary p-0 bg-transparent"  data-bs-toggle="modal" data-bs-target="#taksModal" data-bs-whatever="@getbootstrap" v-on:mouseenter="detalleUser(user.id)">
+    <i class="fas fa-plus-circle"></i>
+                </button>
+  </div>
+  
+                <div id="taksModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+                 class=" modal fade">
+
+                    <div class="modal-dialog">
+                      <div class="modal-content" style="text-align: left;">
+                          <div class="modal-header">
+                            
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                             
+                            <Baselegal id="taskModal" v-on:value-changed="updateTotals" name="Cargar más información"/>
+                          </div>
+                         
+                      </div>
+                    </div>
+                  </div>
+
+ 
+  <HelloWorld :title="totalAmount"  :contenido="contenidoend" :description="descriptionend"/>
 </div>
+</div>
+</section>
+
 </template>
 <script>
   export default {
     data() {
       return {
-        totalAmount: 0,
-        totalTaxes: 0,
+        totalAmount: '',
+        descriptionend:'',
         contenidoend:'',
-        descriptionend:''
+        
 
        }
       },
@@ -107,12 +137,11 @@ const viewaddress=()=>
       }
     },
     methods: {
-     updateTotals(val, tax,contenido,description) 
+     updateTotals(val,descripcion,contenido) 
      {
       this.totalAmount = val;
-      this.totalTaxes = tax;
+      this.descriptionend=descripcion;
       this.contenidoend=contenido;
-      this.descriptionend=description;
      },
     
     }
@@ -174,5 +203,12 @@ button.btn.btn-success{
 }
 i.fas.fa-sort-down{
     transition: 0.2s;
+}
+.fa-circle-plus:before, .fa-plus-circle:before {
+    content: "\f055";
+    font-size: x-large;
+}
+button:hover{
+  border: none;
 }
 </style>
