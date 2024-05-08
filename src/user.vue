@@ -114,7 +114,7 @@ const viewaddress=()=>
                   </div>
 
  
-  <HelloWorld :title="totalAmount"  :contenido="contenidoend" :description="descriptionend"/>
+  <HelloWorld :title="totalAmount"  :contenido="contenidoend" :description="descriptionend" :id="id"/>
 </div>
 </div>
 </section>
@@ -127,7 +127,7 @@ const viewaddress=()=>
         totalAmount: '',
         descriptionend:'',
         contenidoend:'',
-        
+        id:''
 
        }
       },
@@ -137,11 +137,12 @@ const viewaddress=()=>
       }
     },
     methods: {
-     updateTotals(val,descripcion,contenido) 
+     updateTotals(val,descripcion,contenido,id) 
      {
       this.totalAmount = val;
       this.descriptionend=descripcion;
       this.contenidoend=contenido;
+      this.id=id;
      },
     
     }

@@ -36,21 +36,25 @@ export default {
     return {
       value: '',
       descripcion:"",
-      contenido:''
+      contenido:'',
+      id:0
     }
   },
 computed: 
 {
     tax() 
     {
-      return this.value * 0.2;
+      return   this.id=this.id+1;
     },
     enviar()
     {
-      this.$emit('value-changed', this.value , this.descripcion ,this.contenido);
+      
+
+      this.$emit('value-changed', this.value , this.descripcion ,this.contenido,this.tax);
       this.contenido="";
       this.value="" ; 
       this.descripcion="";
+    
     }
   },
   

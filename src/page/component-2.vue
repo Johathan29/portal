@@ -8,21 +8,23 @@ const titul=ref();
 
     title : String,
     description: String,
-    contenido: String
+    contenido: String,
+    id:Number
   
   },
   data(){
     return{
-selectedo:'',
-options:["Activo","En Progreso","Eliminar"]
+selected:'',
+options:[]
     }
 
   },
 
   computed: {
     calculateBooksMessage(){
+     
       const item={
-    
+    'id': this.id,
   'titulo' : this.title,
   'descripcion': this.description,
   'contenido' : this.contenido,
@@ -36,20 +38,37 @@ return valores.value;
     updateTasks(){
  const titul="prueba";
  return titul;
+    },
+   
+   
+},
+methods:{
+  /*varificar(selector){
+    if(selector){
+     return this.selected , this.options=["Activo","En Progreso","Eliminar"];
     }
+    
+   
+
+    
+}*/
+varificar(selector,id){
+   console.log(selector,id);
+   return  selector, this.options=["Activo","En Progreso","Eliminar"];
+  }
 }
-}
-  ;
+};
+  
 </script>
 <template>
-   <div v-for="(list,index) in calculateBooksMessage" :key="index"  :class="['p-2','task','col-md-4','col-12',index==0?'d-none':'']"  >
+   <div v-for="(list,index) in calculateBooksMessage" :key="index"  :class="['p-2','task','col-md-4','col-12',index==0?'d-none':'',]"  >
       <div class="d-flex header-info">
-        <h4 class="titletask">{{   list.titulo  }} </h4> 
-        <select class="form-control" :required="true">
+        <h4 class="titletask">{{   list.titulo  }}{{ list.id }} {{ selector }}</h4> 
+        <select class="form-control" v-model="selected"  :on-change="varificar(list.id,selected)" >
   <option 
    v-for="option in options" 
    v-bind:value="option"
-   :selected="option == 'Activo'"
+   :selected="option == list.estado"
   >{{ option }}</option>
 </select>
       </div>
@@ -63,8 +82,9 @@ return valores.value;
 
 <style>
     h4.titletask {
-        color: #223a32;
+
         font-weight: 600;
+        width: 100%;
       
     }
     .task {
