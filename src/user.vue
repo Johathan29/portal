@@ -6,7 +6,6 @@ import Testimonio  from "./page/testimonio.vue";
 import { View } from 'typeorm/schema-builder/view/View';
 import { ref, computed, onMounted } from 'vue';
 const users = ref(null);
-
 const itemUser = ref([]);
 const grupoItem = ref([]);
 const dnone=ref('d-none');
@@ -14,10 +13,9 @@ const classtransform=ref();
 const update=ref([])
   //https://jsonplaceholder.typicode.com/users
   onMounted(async () =>
-  {
+    {
     const response = await fetch('https://jsonplaceholder.typicode.com/users');
     users.value = await response.json();
-    console.log(users.value)
     });
 //view details of users
 const detalleUser = (index) => {
@@ -46,7 +44,7 @@ const viewaddress=()=>
                 {{ user.email }}
                 </p>
                 <button class="btn btn-primary "  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" v-on:mouseenter="detalleUser(user.id)">
-                  Ver Detalle
+                  Ver detalle
                 </button>
                 <div id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
                  class=" modal fade" v-if="user.id === grupoItem.id">
@@ -58,8 +56,8 @@ const viewaddress=()=>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                              <label for="recipient-name" class="col-form-label">Firts Name:</label> {{ user.name}}<br/>
-                              <label for="message-text"  class="col-form-label">Last Name:</label> {{ user.username }}<br/>
+                              <label for="recipient-name" class="col-form-label">Firts name:</label> {{ user.name}}<br/>
+                              <label for="message-text"  class="col-form-label">Last name:</label> {{ user.username }}<br/>
                               <label for="message-text"  class="col-form-label">Email:</label> {{ user.email }}<br/>
                               <label for="message-text"  class="col-form-label" style="display: flex;align-items: baseline;" v-on:click="viewaddress"><p>Address</p> <i :class="'fas fa-sort-down ' + classtransform "></i></label> 
                               <div :class="dnone" > 
@@ -68,18 +66,15 @@ const viewaddress=()=>
                               <p> Ciudad: {{user.address.city }}</p>
                               <p> Codigo Postal: {{user.address.zipcode }}</p>
                              </div>
-                              <label for="message-text"  class="col-form-label">Last Name:</label> {{ user.company }}<br/>  
-
-                             
+                              <label for="message-text"  class="col-form-label">Company:</label> {{ user.company }}<br/>  
                           </div>
-                         
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="w-35">
-                <router-link to="/testimonio" class="btn btn-success" style="">Ver Más</router-link>
+                <router-link to="/testimonio" class="btn btn-success" style="">Ver más</router-link>
               </div>
             </div>
           </div>
