@@ -64,7 +64,7 @@ const viewaddress=()=>
                               <p> calle: {{user.address.street }}</p>
                               <p> Suite: {{user.address.suite }}</p>
                               <p> Ciudad: {{user.address.city }}</p>
-                              <p> Codigo Postal: {{user.address.zipcode }}</p>
+                              <p> Codigo postal: {{user.address.zipcode }}</p>
                              </div>
                               <label for="message-text"  class="col-form-label">Company:</label> {{ user.company }}<br/>  
                           </div>
