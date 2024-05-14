@@ -25,7 +25,7 @@ const color=ref('');
     return{
       
       selected:'',
-      options:[],
+      options:["Activo","En Proceso","Eliminar"],
       activo:"" ,
       titul:'bg-info',
       valor:[],
@@ -41,7 +41,7 @@ const color=ref('');
       'titulo' : this.title,
       'descripcion': this.description,
       'contenido' : this.contenido,
-      'estado' : "Activo"
+      'estado' : ""
       }
       this.titulo=item;
       valores.value.push(this.titulo); 
@@ -66,7 +66,7 @@ methods:{
 
     
 }*/
-varificar(index,selector){
+varificar(index){
    
    this.options=["Activo","En Proceso","Eliminar"];
   },
@@ -101,7 +101,12 @@ varificar(index,selector){
         this.count=this.item.find(item => item.id== id ).id;
         console.log(this.Estado,this.count);
        // alert(this.Estado);
-       this.color ;
+       if(this.Estado=="Activo"){
+        this.color="bg-success"
+       } else{
+        this.color="bg-info"
+       }
+       
         return  this.color
 }
 }
@@ -112,22 +117,15 @@ varificar(index,selector){
  
  
   <div v-for="(list,index) in calculateBooksMessage" :key="index" 
-    :class="['p-2','task','col-md-4','col-12',index==0 ? 'd-none':'',this.Estado=='Activo' && this.count==list.id ? 'bg-success':'' || this.Estado=='En Proceso' && this.count==id ? 'bg-warning':'' || this.Estado=='Eliminar' && this.count==id ? 'bg-danger':'']"  >
+    :class="['p-2','task','col-md-4','col-12',index==0 ? 'd-none':'',this.Estado==list.estado && this.count==list.id ? color :'' ]"  >
       <div class="d-flex header-info">
-        <h4 class="titletask">{{   list.titulo }} {{ Estado }} {{ list.id }}</h4> 
-        <select class="form-control" :id="index" v-model="selected"  >
-          <option 
-          value="Activo">
-          Activo
+        <h4 class="titletask">{{   list.titulo }} {{ Estado }} {{ list.estado }}</h4> 
+        <select class="form-control" :id="index" v-model="selected" v-on:change="varificar(index)" >
+          <option v-for="option in  options"
+          :value="option">
+          {{option}}
           </option>
-          <option 
-         value="En Proceso">
-         En Proceso
-         </option>
-         <option 
-         value="Eliminar">
-          Eliminar
-         </option>
+         
         </select>
        
       </div>
