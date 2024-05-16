@@ -1,6 +1,6 @@
 <script setup>
 
-import { ref, onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 const users = ref(null);
 const itemUser = ref([]);
 const grupoItem = ref([]);
@@ -13,7 +13,7 @@ const update=ref([])
     console.log(users.value)
     });
 
-//add infor in user
+  //add infor in user
 const AddUser=(lastname, firtsname,email)=>{
   if(lastname!=null || firtsname!=null || email!=null)
   {
@@ -26,6 +26,7 @@ const AddUser=(lastname, firtsname,email)=>{
     email:email,
   }
   users.value.push(formulario);
+  users.value.sort();
   update.value.push(users.value.find((animal) => animal.id === id).id);
   }
   
@@ -123,15 +124,13 @@ const UpdateItems=(firtsname,ID,lastname,email)=>
 <template>
   <section class="title-section">
     <div class="container">
-      {{ name }}
-      <input type="number"
-        v-model.number="value" step="100" />
-      <h2>Testimonio {{ greetingMessage.title }}</h2>
-      <span>{{ greetingMessage.title }}</span>
+   
+      <h2>Testimonio </h2>
+  
       <div class="row">
        <!----> 
        <div class="w-100">
-        <button type="button" class="btn btn-primary" style="width: 30%;height: 4rem;"  data-bs-toggle="modal" data-bs-target="#addnew" data-bs-whatever="@getbootstrap">Añadir nuevo Testimonio</button>
+        <button type="button" id="success" class="btn btn-success" style="width: 30%;height: 4rem;"  data-bs-toggle="modal" data-bs-target="#addnew" data-bs-whatever="@getbootstrap">Añadir nuevo Testimonio</button>
         <div id="addnew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
           class=" modal fade">
     <div class="modal-dialog">
@@ -146,21 +145,21 @@ const UpdateItems=(firtsname,ID,lastname,email)=>
                      <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Firts Name:</label>
                         <input type="text" class="form-control"  id="recipient-name" 
-                            v-model="firtsname" required="true">
+                            v-model="namefirts" required="true">
                        </div>
                      <div class="mb-3">
                         <label for="message-text" class="col-form-label">Last Name:</label>
-                        <input class="form-control" required type="text" id="message-text" v-model="lastname" >
+                        <input class="form-control" required type="text" id="message-text" v-model="namelast" >
                       </div>
                       <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Last Name:</label>
-                        <input class="form-control" type="email" id="message-text" v-model="email" >
+                        <label for="message-text" class="col-form-label">email:</label>
+                        <input class="form-control" type="email" id="message-text" v-model="emailreg" >
                       </div>
                   </div>
                   
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Exit</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" v-on:click="AddUser(firtsname,lastname,email )">Add</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" v-on:click="AddUser(namefirts,namelast,emailreg )">Add</button>
                    </div>
                    </form>
                 </div>
@@ -222,8 +221,24 @@ const UpdateItems=(firtsname,ID,lastname,email)=>
     </div>
   </div>
 </div>
-<router-link to="/testimonios" class="btn btn-success" style="">Ver Más</router-link>
-</div>
 
+</div>
 </section>
 </template>
+<style>
+button#success.btn-success{
+background-color: #223a32 !important;
+}
+button#success.btn-success:hover{
+background-color: #2c3f22 !important;
+}
+button.btn-primary {
+    display: block;
+    padding: 0.25rem;
+    margin-block: 0.25rem;
+    border-radius: 0.25rem;
+    font-weight: 600;
+    position: absolute;
+    text-align: -webkit-center;
+}
+</style>

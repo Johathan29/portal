@@ -29,6 +29,14 @@ const navegation = [
     children: [],
     ubicacion: 0,
   },
+  {
+    title: 'Testimonio',
+    path: 'testimonios',
+    component: 'testimonio_all',
+    children: [],
+    ubicacion: 1,
+  },
+  
   
 ];
 export default {

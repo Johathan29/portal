@@ -23,9 +23,9 @@ const color=ref('');
   },
   data(){
     return{
-      
+      fecha:'',
       selected:'',
-      options:["Activo","En Proceso","Eliminar"],
+      options:[],
       activo:"" ,
       titul:'bg-info',
       valor:[],
@@ -66,9 +66,9 @@ methods:{
 
     
 }*/
-varificar(index){
+varificar(){
    
-   this.options=["Activo","En Proceso","Eliminar"];
+   return this.options=["Activo","En Proceso","Eliminar"];
   },
 /*confirmar(index,estado){
     const titul='';
@@ -120,7 +120,14 @@ varificar(index){
     :class="['p-2','task','col-md-4','col-12',index==0 ? 'd-none':'',this.Estado==list.estado && this.count==list.id ? color :'' ]"  >
       <div class="d-flex header-info">
         <h4 class="titletask">{{   list.titulo }} {{ Estado }} {{ list.estado }}</h4> 
-        <select class="form-control" :id="index" v-model="selected" v-on:change="varificar(index)" >
+         
+         {{ fecha }}
+         <button class="text-primary p-0 bg-transparent"  data-bs-toggle="modal" data-bs-target="#taksModal" data-bs-whatever="@getbootstrap" v-on:mouseenter="detalleUser(user.id)">
+    Actualizar 
+                </button>
+                
+        <input type="date" v-model="fecha">
+        <select class="form-control" :id="index" v-model="selected" v-on:change="varificar()" >
           <option v-for="option in  options"
           :value="option">
           {{option}}
@@ -139,6 +146,9 @@ varificar(index){
 </template>
 
 <style>
+button:hover {
+    border: none!important;;
+}
     h4.titletask {
 
         font-weight: 600;

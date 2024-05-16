@@ -74,7 +74,7 @@ const viewaddress=()=>
                 </div>
               </div>
               <div class="w-35">
-                <router-link to="/testimonio" class="btn btn-success" style="">Ver más</router-link>
+                <router-link to="/testimonios" class="btn btn-success" style="">Ver más</router-link>
               </div>
             </div>
           </div>
