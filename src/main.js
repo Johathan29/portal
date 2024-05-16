@@ -5,7 +5,7 @@ import App from './App.vue';
 import quienessomos from './page/quienes-somos.vue';
 import baseLegal from './page/base-legal.vue';
 import Home from './page/Home.vue';
-import Testimonio from './page/testimonio_all.vue';
+import Testimonio from './page/testimonio.vue';
 import Mascotas from './Mascotas.vue';
 import navegation from './navegation';
 import PathNotFound from './PathNotFound.vue';
