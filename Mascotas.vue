@@ -82,7 +82,7 @@ const auto = (id) => {
                                 @click="add(items.id)"
                                 :disabled="auto(items.id)"
                                 class="btn btn btn-success">
-                                Favorito
+                                {{ valorVerificar==true ? 'Cambiar' : 'Favorito'}} 
                                 </button>
                         </div>
                     </div>
