@@ -20,7 +20,7 @@ return atributo=='d-md-block'? element.classList.add('d-block'):
       <div class="container">
         <div class="d-flex justify-content-between">
           <div class="logo d-flex align-items-center">
-            <img src="../assets/img/logo-cupula.svg" alt="" height="40" />
+            <img src="" alt="" height="40" />
             <router-link to="/"
             v-for="item in site" ><h4 class="text-white m-0">{{item.titlesmall}}</h4>
             </router-link>
