@@ -17,7 +17,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 const routes = [
   { path: '/', component: Home },
   { path: '/quienes-somos', component: quienessomos },
-  { path: '/testimonio', component: Testimonio },
+  { path: '/testimonios', component: Testimonio },
   { path: '/base-legal', component: Mascotas },
   { path: '/:pathMatch(.*)*', component: PathNotFound },
 ];

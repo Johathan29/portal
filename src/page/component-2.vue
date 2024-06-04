@@ -1,8 +1,8 @@
-<script>
+<script >
 import { ref} from 'vue'
 const valores=ref([]);
-const titul=ref();
-
+const titul=ref('bg-info');
+const color=ref('');
  export default {
   props: {
 
@@ -12,34 +12,48 @@ const titul=ref();
     id:Number
   
   },
+  setup() {
+    return {
+      count: ref(),
+      Estado:ref(''),
+      items:ref(),
+      color:ref(),
+      
+    }
+  },
   data(){
     return{
-selected:'',
-options:[]
+      fecha:'',
+      selected:'',
+      options:[],
+      activo:"" ,
+      titul:'bg-info',
+      valor:[],
+      item:this.items
     }
-
   },
-
-  computed: {
-    calculateBooksMessage(){
+    computed: {
+    calculateBooksMessage()
+    {
      
       const item={
-    'id': this.id,
-  'titulo' : this.title,
-  'descripcion': this.description,
-  'contenido' : this.contenido,
-  'estado' : "Activo"
-}
-this.titulo=item;
-valores.value.push(this.titulo); 
-return valores.value;
+      'id': this.id,
+      'titulo' : this.title,
+      'descripcion': this.description,
+      'contenido' : this.contenido,
+      'estado' : ""
+      }
+      this.titulo=item;
+      valores.value.push(this.titulo); 
+      return valores.value;
 
     },
-    updateTasks(){
- const titul="prueba";
- return titul;
+    updateTasks()
+    {
+      const titul="prueba";
+      return titul;
     },
-   
+    
    
 },
 methods:{
@@ -52,35 +66,89 @@ methods:{
 
     
 }*/
-varificar(selector,id){
-   console.log(selector,id);
-   return  selector, this.options=["Activo","En Progreso","Eliminar"];
-  }
+varificar(){
+   
+   return this.options=["Activo","En Proceso","Eliminar"];
+  },
+/*confirmar(index,estado){
+    const titul='';
+    this.valor=valores.value;
+    const items= this.valor.find(item => item.id== index);
+    items.estado=estado;
+    valores.value.push(item=> item.id== index ? item.estado=items.estado : items.estado)
+    console.log(items.estado, estado,index)
+    this.activo="bg-info" 
+      if(estado=="Activo" && index==items.id)
+        {
+         this.activo="bg-success";
+        this.titul="";
+        alert(this.activo);
+    } else if(estado=="En Proceso"){
+      this.activo="bg-warning";
+      this.titul="";
+      alert(this.activo);
+    }
+    return this.activo;
+  }*/
+  confirmar(id,selector)
+  {
+    
+    
+        this.valor=valores.value;
+        this.item= this.valor.filter(item => item.id== id ? item.estado=selector :'' );
+        
+        this.Estado=this.item.find(item => item.id== id ).estado;
+        this.count=this.item.find(item => item.id== id ).id;
+        console.log(this.Estado,this.count);
+       // alert(this.Estado);
+       if(this.Estado=="Activo"){
+        this.color="bg-success"
+       } else{
+        this.color="bg-info"
+       }
+       
+        return  this.color
 }
-};
+}
+}
   
 </script>
 <template>
-   <div v-for="(list,index) in calculateBooksMessage" :key="index"  :class="['p-2','task','col-md-4','col-12',index==0?'d-none':'',]"  >
+ 
+ 
+  <div v-for="(list,index) in calculateBooksMessage" :key="index" 
+    :class="['p-2','task','col-md-4','col-12',index==0 ? 'd-none':'',this.Estado==list.estado && this.count==list.id ? color :'' ]"  >
       <div class="d-flex header-info">
-        <h4 class="titletask">{{   list.titulo  }}{{ list.id }} {{ selector }}</h4> 
-        <select class="form-control" v-model="selected"  :on-change="varificar(list.id,selected)" >
-  <option 
-   v-for="option in options" 
-   v-bind:value="option"
-   :selected="option == list.estado"
-  >{{ option }}</option>
-</select>
+        <h4 class="titletask">{{   list.titulo }} {{ Estado }} {{ list.estado }}</h4> 
+         
+         {{ fecha }}
+         <button class="text-primary p-0 bg-transparent"  data-bs-toggle="modal" data-bs-target="#taksModal" data-bs-whatever="@getbootstrap" v-on:mouseenter="detalleUser(user.id)">
+    Actualizar 
+                </button>
+                
+        <input type="date" v-model="fecha">
+        <select class="form-control" :id="index" v-model="selected" v-on:change="varificar()" >
+          <option v-for="option in  options"
+          :value="option">
+          {{option}}
+          </option>
+         
+        </select>
+       
       </div>
         <p>{{ list.descripcion }}</p>
         <p>{{ list.contenido }}</p>
-        <button class="btn border-danger text-danger p-1" >
+        <button class="btn border-danger text-danger p-1" @click="confirmar(list.id,selected)" >
             <i class="fa-solid fa-xmark"></i>
         </button>
-    </div>    
+    </div>   
+
 </template>
 
 <style>
+button:hover {
+    border: none!important;;
+}
     h4.titletask {
 
         font-weight: 600;

@@ -124,65 +124,76 @@ const UpdateItems=(firtsname,ID,lastname,email)=>
 <template>
   <section class="title-section">
     <div class="container">
+   
       <h2>Testimonio </h2>
+  
       <div class="row">
        <!----> 
-        <div class="w-100">
-          <button type="button" id="success" class="btn btn-success" style="width: 30%;height: 4rem;"  data-bs-toggle="modal" data-bs-target="#addnew" data-bs-whatever="@getbootstrap">Añadir nuevo Testimonio</button>
-          <div id="addnew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-            class=" modal fade">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h2 class="modal-title fs-5" >Completar Formulario</h2>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form>
-                  <div class="modal-body">
-                    <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">Firts Name:</label>
-                      <input type="text" class="form-control"  id="recipient-name" 
+       <div class="w-100">
+        <button type="button" id="success" class="btn btn-success" style="width: 30%;height: 4rem;"  data-bs-toggle="modal" data-bs-target="#addnew" data-bs-whatever="@getbootstrap">Añadir nuevo Testimonio</button>
+        <div id="addnew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+          class=" modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+             <h2 class="modal-title fs-5" >Completar Formulario</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+            <form>
+               <div class="modal-body">
+               
+                     <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Firts Name:</label>
+                        <input type="text" class="form-control"  id="recipient-name" 
                             v-model="namefirts" required="true">
-                    </div>
-                    <div class="mb-3">
+                       </div>
+                     <div class="mb-3">
                         <label for="message-text" class="col-form-label">Last Name:</label>
                         <input class="form-control" required type="text" id="message-text" v-model="namelast" >
-                    </div>
-                    <div class="mb-3">
+                      </div>
+                      <div class="mb-3">
                         <label for="message-text" class="col-form-label">email:</label>
                         <input class="form-control" type="email" id="message-text" v-model="emailreg" >
-                    </div>
+                      </div>
                   </div>
+                  
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Exit</button>
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal" v-on:click="AddUser(namefirts,namelast,emailreg )">Add</button>
-                  </div>
-                </form>
-              </div>
-            </div> 
-          </div>
-        </div>
-        <div class="card m-2" :current-page="currentPage" style="width: 12rem;" v-for="(user,index) in users" :key="user.id"   >
-            <!--<img src="..." class="card-img-top" alt="...">-->
-            <i class="fa-solid fa-user-secret" style="font-size: 70px;"></i>
-            <div class="card-body">
-              <h5 class="card-title">{{ user.name }}  {{ user.username }}</h5>
-              <p class="card-text">{{ user.email }}</p>
-              {{ user.id }}
-              <button class="btn btn-primary "  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" v-on:mouseenter="detalleUser(user.id)">
-                Modificar Detalle
-              </button>
-               <!--<a href="#" class="btn btn-primary">Modificar</a>-->
-              <div id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-                class=" modal fade" v-if="user.id === grupoItem.id">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h2 class="modal-title fs-5" >Cambios de datos </h2>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="mb-3">
+                   </div>
+                   </form>
+                </div>
+                
+          </div> 
+          
+     </div>
+</div>
+       <div class="card m-2" :current-page="currentPage" style="width: 12rem;" v-for="(user,index) in users" :key="user.id"   >
+ <!--<img src="..." class="card-img-top" alt="...">-->
+         <i class="fa-solid fa-user-secret" style="font-size: 70px;"></i>
+    <div class="card-body">
+    <h5 class="card-title">{{ user.name }}  {{ user.username }}</h5>
+    <p class="card-text">{{ user.email }}</p>
+    {{ user.id }}
+    <button class="btn btn-primary "  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" v-on:mouseenter="detalleUser(user.id)">
+            Modificar Detalle
+          </button>
+    <!--<a href="#" class="btn btn-primary">Modificar</a>-->
+        <div id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+          class=" modal fade"
+         
+          v-if="user.id === grupoItem.id"
+        >
+
+        <div class="modal-dialog">
+           <div class="modal-content">
+              <div class="modal-header">
+                <h2 class="modal-title fs-5" >Cambios de datos </h2>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                 </div>
+               <div class="modal-body">
+                 
+                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Firts Name:</label>
                         <input type="text" class="form-control" id="recipient-name" :value="user.name"
                             @input="firtsname= $event.target.value" >
@@ -197,20 +208,22 @@ const UpdateItems=(firtsname,ID,lastname,email)=>
                         <input class="form-control" type="text" id="message-text" :value="user.email"
                          @input="email= $event.target.value" >
                       </div>
-                      <p>{{ user.id }}</p>
+                <p>{{ user.id }}</p>
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" v-on:click="Delete(index)">Delete</button>
-                    <button type="button" class="btn btn-success" v-on:click="UpdateItems(firtsname,user.id,lastname,email)">Update</button>
-                  </div>
+                
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal" v-on:click="Delete(index)">Delete</button>
+                  <button type="button" class="btn btn-success" v-on:click="UpdateItems(firtsname,user.id,lastname,email)">Update</button>
                 </div>
-              </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
+
+</div>
+</section>
 </template>
 <style>
 button#success.btn-success{
