@@ -11,7 +11,7 @@ const dataupdate = ref([]);
 const letra = 'siete';
 const favoritoAnimales = ref([]);
 let convertir = ref([]);
-const valorVerificar=ref();
+
 const contador = () => {
   letra;
   counter.value++;
@@ -71,8 +71,8 @@ const Update = (index) => {
   dataupdate.value = favoritoAnimales.value.find((item) => item.Id === index);
 };
 const auto = (id) => {
-  this.valorVerificar.value = valorId.value.find((item) => item === id);
-  return this.valorVerificar.value ? true : false;
+  const valorVerificar = valorId.value.find((item) => item === id);
+  return valorVerificar ? true : false;
   const title='cambiar';
   
 };
