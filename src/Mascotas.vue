@@ -98,7 +98,7 @@ const auto = (id) => {
                 :disabled="auto(items.id)"
                 class="btn btn btn-success"
               >
-              sadasdsa
+           {{ valorVerificar}} 
               </button>
             </div>
           </div>
