@@ -73,7 +73,7 @@ const Update = (index) => {
 const auto = (id) => {
   const valorVerificar = valorId.value.find((item) => item === id);
   return valorVerificar ? true : false;
-  const title='cambiar';
+  const title='Cambiar';
   
 };
 </script>
@@ -101,7 +101,7 @@ const auto = (id) => {
                 :disabled="auto(items.id)"
                 class="btn btn btn-success"
               >
-           {{ valorVerificar ? title : Favorito}} 
+           {{ valorVerificar ? title : 'Favorito'}} 
               </button>
             </div>
           </div>
