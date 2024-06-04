@@ -74,6 +74,7 @@ const auto = (id) => {
   const valorVerificar = valorId.value.find((item) => item === id);
   return valorVerificar ? true : false;
   const title='Cambiar';
+  return title;
   
 };
 </script>
