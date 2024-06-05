@@ -1,5 +1,8 @@
 @charset "UTF-8";
-
+@import url(/node_modules/tailwindcss/tailwind.css);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 /* Box sizing rules */
 *,
 *::before,

@@ -83,7 +83,7 @@ const auto = (id) => {
   <section>
     <div class="container ">
       <div class="row">
-      <ul class="row-cols-1 row-cols-md-2 g-4 " style="align-text:center">
+      <ul class="row-cols-1 row-cols-md-2 g-4 " style="text-align:center;">
         <li
           class="col-sm-5 offset-sm-2 col-md-6 offset-md-0"
           v-for="items in animalNames" :key="items.id"
