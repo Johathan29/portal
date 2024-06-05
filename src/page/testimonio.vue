@@ -124,9 +124,10 @@ const UpdateItems=(firtsname,ID,lastname,email)=>
 <template>
   <section class="title-section">
     <div class="container">
-      <h2>Testimonio </h2>
+      
       <div class="row">
        <!----> 
+       <h2 class="text-3xl font-bold underline">Testimonio </h2>
         <div class="w-100">
           <button type="button" id="success" class="btn btn-success" style="width: 30%;height: 4rem;"  data-bs-toggle="modal" data-bs-target="#addnew" data-bs-whatever="@getbootstrap">Añadir nuevo Testimonio</button>
           <div id="addnew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
