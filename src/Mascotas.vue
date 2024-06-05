@@ -11,6 +11,7 @@ const dataupdate = ref([]);
 const letra = 'siete';
 const favoritoAnimales = ref([]);
 let convertir = ref([]);
+
 const contador = () => {
   letra;
   counter.value++;
@@ -72,13 +73,17 @@ const Update = (index) => {
 const auto = (id) => {
   const valorVerificar = valorId.value.find((item) => item === id);
   return valorVerificar ? true : false;
+  const title='Cambiar';
+  return title;
+  
 };
 </script>
 
 <template>
   <section>
-    <div class="container row">
-      <ul class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="container ">
+      <div class="row">
+      <ul class="row-cols-1 row-cols-md-2 g-4 " style="align-text:center">
         <li
           class="col-sm-5 offset-sm-2 col-md-6 offset-md-0"
           v-for="items in animalNames" :key="items.id"
@@ -98,13 +103,14 @@ const auto = (id) => {
                 :disabled="auto(items.id)"
                 class="btn btn btn-success"
               >
-                Favorito
+           {{ valorVerificar ? title : 'Favorito'}} 
               </button>
             </div>
           </div>
         </li>
       </ul>
     </div>
+  </div>
   </section>
   <section>
     <div class="container row" v-if="favoritoAnimales.length>=1">
@@ -156,6 +162,7 @@ const auto = (id) => {
         <hr />
       </template>
     </div>
+    
   </section>
 </template>
 
@@ -204,4 +211,7 @@ header {
   padding: 0px;
   border-bottom: 3px solid #74aaff5e;
 }
+  ul.row-cols-1.row-cols-md-2.g-4{
+ flex-wrap:wrap;
+  }
 </style>
