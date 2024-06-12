@@ -6,7 +6,7 @@ import { watch } from 'vue';
       {{ name }}
       <form class="form-align">
      <label class=" d-flex col-12 align-center"> 
-        <span class="col col-2 d-block">Titulo:</span>
+        <span class="col col-2 d-block underline">Titulo:</span>
         <input type="text" class="col-8 m-2"
         step="100"  v-model="value"/>
      </label>

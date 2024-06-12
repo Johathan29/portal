@@ -146,9 +146,7 @@ varificar(){
 </template>
 
 <style>
-button:hover {
-    border: none!important;;
-}
+
     h4.titletask {
 
         font-weight: 600;

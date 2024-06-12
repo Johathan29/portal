@@ -10,7 +10,7 @@ const update=ref([])
   {
     const response = await fetch('https://jsonplaceholder.typicode.com/users');
     users.value = await response.json();
-    console.log(users.value)
+   
     });
 
   //add infor in user
@@ -29,7 +29,7 @@ const AddUser=(lastname, firtsname,email)=>{
   users.value.sort();
   update.value.push(users.value.find((animal) => animal.id === id).id);
   }
-  
+  lastname="", firtsname="",email=""
 }
 const detalleUser = (index) => {
  /* setTimeout(() => {
@@ -124,10 +124,9 @@ const UpdateItems=(firtsname,ID,lastname,email)=>
 <template>
   <section class="title-section">
     <div class="container">
-      
+      <h2 class="">Testimonio </h2>
       <div class="row">
        <!----> 
-       <h2 class="text-3xl font-bold underline">Testimonio </h2>
         <div class="w-100">
           <button type="button" id="success" class="btn btn-success" style="width: 30%;height: 4rem;"  data-bs-toggle="modal" data-bs-target="#addnew" data-bs-whatever="@getbootstrap">Añadir nuevo Testimonio</button>
           <div id="addnew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
@@ -143,7 +142,7 @@ const UpdateItems=(firtsname,ID,lastname,email)=>
                     <div class="mb-3">
                       <label for="recipient-name" class="col-form-label">Firts Name:</label>
                       <input type="text" class="form-control"  id="recipient-name" 
-                            v-model="namefirts" required="true">
+                            v-model="namefirts" required="true" >
                     </div>
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label">Last Name:</label>
@@ -167,7 +166,8 @@ const UpdateItems=(firtsname,ID,lastname,email)=>
             <!--<img src="..." class="card-img-top" alt="...">-->
             <i class="fa-solid fa-user-secret" style="font-size: 70px;"></i>
             <div class="card-body">
-              <h5 class="card-title">{{ user.name }}  {{ user.username }}</h5>
+              <h5 class="card-title">{{ user.name }}</h5>
+              <h5 class="card-title">{{ user.username }}</h5>
               <p class="card-text">{{ user.email }}</p>
               {{ user.id }}
               <button class="btn btn-primary "  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" v-on:mouseenter="detalleUser(user.id)">
@@ -226,7 +226,7 @@ button.btn-primary {
     margin-block: 0.25rem;
     border-radius: 0.25rem;
     font-weight: 600;
-    position: absolute;
+    /*position: absolute;*/
     text-align: -webkit-center;
 }
 </style>

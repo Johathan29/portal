@@ -10,7 +10,7 @@ const update=ref([])
   {
     const response = await fetch('https://jsonplaceholder.typicode.com/users');
     users.value = await response.json();
-    console.log(users.value)
+    
     });
 
   //add infor in user
@@ -122,10 +122,11 @@ const UpdateItems=(firtsname,ID,lastname,email)=>
 }
 </script>
 <template>
+
   <section class="title-section">
     <div class="container">
    
-      <h2>Testimonio </h2>
+      <h2 class="d-none">Testimonio </h2>
   
       <div class="row">
        <!----> 

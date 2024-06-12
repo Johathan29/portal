@@ -204,7 +204,5 @@ i.fas.fa-sort-down{
     content: "\f055";
     font-size: x-large;
 }
-button:hover{
-  border: none;
-}
+
 </style>
