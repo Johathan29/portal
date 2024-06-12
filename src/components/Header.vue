@@ -14,41 +14,20 @@ return atributo=='d-md-block'? element.classList.add('d-block'):
 }
 </script>
 <template>
-  <header>
+  <header class="absolute z-1">
    
-    <div class="logo-area py-4">
-      <div class="container">
-        <div class="d-flex justify-content-between">
-          <div class="logo d-flex align-items-center">
-            <img src="" alt="" height="40" />
+    <div class="">
+      <div class="container mx-auto">
+        <div class="flex justify-between p-4 ">
+          <div class="logo ">
             <router-link to="/"
-            v-for="item in site" ><h4 class="text-white m-0">{{item.titlesmall}}</h4>
+            v-for="item in site" >
+            <img src="/assets/vue.svg" alt="" height="40" />
+            
             </router-link>
           </div>
-          <div class="search-box d-none d-md-flex">
-            <div class="search-bar">
-              <input type="text" placeholder="¿Qué quieres buscar?" />
-              <button class="btn is-secondary rounded-full">
-                <i class="fas fa-search"></i>
-              </button>
-            </div>
-            <a href="#">
-              <img src="" alt="" height="32" />
-            </a>
-          </div>
-          <div class="search-box d-flex d-md-none">
-            <button class="btn is-secondary rounded-full">
-              <i class="fas fa-search"></i>
-            </button>
-            <a v-on:click="funcion">
-              <img  src="../assets/img/icons/icon-hamburger.svg" alt="" height="32" />
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <nav :class="['d-md-block',nameclass]" id="nav" style="display: none;">
-      <div class="container">
+          <nav :class="['d-md-block z-0 ',nameclass]" id="nav" style="display: none;">
+      <div class="container mx-auto">
         <ul class="main-nav">
           <li
             v-for="item in router"
@@ -67,5 +46,14 @@ return atributo=='d-md-block'? element.classList.add('d-block'):
         </ul>
       </div>
     </nav>
+          <div class="search-box d-flex d-md-none">
+            <a v-on:click="funcion">
+              <img  src="../assets/img/icons/icon-hamburger.svg" alt="" height="32" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+   
   </header>
 </template>
