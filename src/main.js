@@ -14,6 +14,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 //import { BootstrapVue} from 'bootstrap-vue';
 //import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+import { initFlowbite } from 'flowbite';
 const routes = [
   { path: '/', component: Home },
   { path: '/quienes-somos', component: quienessomos },
@@ -32,3 +33,6 @@ const app = createApp(App);
 app.use(router);
 
 app.mount('#app');
+onMounted(() => {
+  initFlowbite();
+})

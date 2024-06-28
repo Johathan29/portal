@@ -122,6 +122,7 @@ const UpdateItems=(firtsname,ID,lastname,email)=>
 }
 </script>
 <template>
+
   <section class="title-section">
     <div class="container">
       

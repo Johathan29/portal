@@ -13,6 +13,7 @@
     "bootstrap": "^5.3.3",
     "bootstrap-vue": "^2.23.1",
     "crypto-js": "^4.2.0",
+    "flowbite": "^2.4.1",
     "sqlite3": "^5.1.6",
     "typeorm": "^0.3.17",
     "vue": "^3.4.21",

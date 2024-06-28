@@ -16,13 +16,14 @@ return atributo=='d-md-block'? element.classList.add('d-block'):
 <template>
   <header>
    
-    <div class="logo-area py-4">
-      <div class="container">
+    <div :class="['logo-area py-4']">
+      <div :class="['container']">
         <div class="d-flex justify-content-between">
           <div class="logo d-flex align-items-center">
             <img src="" alt="" height="40" />
             <router-link to="/"
-            v-for="item in site" ><h4 class="text-white m-0">{{item.titlesmall}}</h4>
+            v-for="item in site" >
+            <h4 :class="['text-white m-0']">{{item.titlesmall}}</h4>
             </router-link>
           </div>
           <div class="search-box d-none d-md-flex">
@@ -48,8 +49,8 @@ return atributo=='d-md-block'? element.classList.add('d-block'):
       </div>
     </div>
     <nav :class="['d-md-block',nameclass]" id="nav" style="display: none;">
-      <div class="container">
-        <ul class="main-nav">
+      <div :class="['container']">
+        <ul :class="['main-nav']">
           <li
             v-for="item in router"
             :class="[item.children.length >= 1 ? 'is-dropdown' : '' + item.ubicacion== 0 ? 'd-none' : '']"
