@@ -56,6 +56,10 @@ picture {
 }
 
 /* Inherit fonts for inputs and buttons */
+button{
+  border: none!important;
+}
+button,
 input,
 button,
 textarea,
@@ -4456,7 +4460,7 @@ input:focus, input:focus-within, input:focus-visible {
   border: 1px solid hsl(211, 17%, 76%);
   width: 100%;
 }
-
+/*
 label {
   color: hsl(212, 100%, 23%);
   font-size: 0.75rem;
@@ -4464,7 +4468,7 @@ label {
   display: inline-block;
   margin-bottom: 0.5rem;
 }
-
+*/
 button {
   background: transparent;
   cursor: pointer;

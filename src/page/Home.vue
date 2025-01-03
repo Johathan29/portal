@@ -3,8 +3,10 @@ import data from '../Data';
 import fetch from '../user.vue';
 
 import { ref } from 'vue';
+import Testimonio from './testimonio.vue';
+import Slider from '../components/slider.vue';
 const valores = ref([]);
-console.log(data.value.length);
+
 const activeclass = ref('active carousel-item');
 valores.value = data.value;
 valores.value.map((item) => item);
@@ -13,5 +15,7 @@ users.value
 };
 </script>
 <template>
-  <fetch> </fetch>
+  <Slider></Slider>
+  <Testimonio></Testimonio>
+  
 </template>

@@ -4492,7 +4492,7 @@ input:focus-visible {
 label {
   color: hsl(212, 100%, 23%);
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 400;
   display: inline-block;
   margin-bottom: 0.5rem;
 }

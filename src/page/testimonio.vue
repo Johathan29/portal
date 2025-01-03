@@ -4,7 +4,9 @@ import { ref, computed, onMounted } from 'vue';
 const users = ref(null);
 const itemUser = ref([]);
 const grupoItem = ref([]);
-const update=ref([])
+const update=ref([]);
+const url=ref([]);
+url.value=window.location.hash;
   //https://jsonplaceholder.typicode.com/users
   onMounted(async () =>
   {
@@ -120,99 +122,124 @@ const UpdateItems=(firtsname,ID,lastname,email)=>
     users.value.filter(item =>item.id == ID ? item.email : item.email)
   }
 }
+
 </script>
 <template>
-
-  <section class="title-section">
-    <div class="container">
-      
-      <div class="row">
-       <!----> 
-       <h2 class="text-3xl font-bold underline">Testimonio </h2>
-        <div class="w-100">
-          <button type="button" id="success" class="btn btn-success" style="width: 30%;height: 4rem;"  data-bs-toggle="modal" data-bs-target="#addnew" data-bs-whatever="@getbootstrap">Añadir nuevo Testimonio</button>
-          <div id="addnew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-            class=" modal fade">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h2 class="modal-title fs-5" >Completar Formulario</h2>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form>
-                  <div class="modal-body">
-                    <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">Firts Name:</label>
-                      <input type="text" class="form-control"  id="recipient-name" 
-                            v-model="namefirts" required="true">
-                    </div>
-                    <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Last Name:</label>
-                        <input class="form-control" required type="text" id="message-text" v-model="namelast" >
-                    </div>
-                    <div class="mb-3">
-                        <label for="message-text" class="col-form-label">email:</label>
-                        <input class="form-control" type="email" id="message-text" v-model="emailreg" >
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Exit</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" v-on:click="AddUser(namefirts,namelast,emailreg )">Add</button>
-                  </div>
-                </form>
-              </div>
-            </div> 
-          </div>
-        </div>
-        <div class="card m-2" :current-page="currentPage" style="width: 12rem;" v-for="(user,index) in users" :key="user.id"   >
-            <!--<img src="..." class="card-img-top" alt="...">-->
-            <i class="fa-solid fa-user-secret" style="font-size: 70px;"></i>
-            <div class="card-body">
-              <h5 class="card-title">{{ user.name }}  {{ user.username }}</h5>
-              <p class="card-text">{{ user.email }}</p>
-              {{ user.id }}
-              <button class="btn btn-primary "  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" v-on:mouseenter="detalleUser(user.id)">
-                Modificar Detalle
-              </button>
-               <!--<a href="#" class="btn btn-primary">Modificar</a>-->
-              <div id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-                class=" modal fade" v-if="user.id === grupoItem.id">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h2 class="modal-title fs-5" >Cambios de datos </h2>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Firts Name:</label>
-                        <input type="text" class="form-control" id="recipient-name" :value="user.name"
-                            @input="firtsname= $event.target.value" >
-                       </div>
-                     <div class="mb-3">
-                        <label for="message-text"  class="col-form-label">Last Name:</label>
-                        <input class="form-control" type="text" id="message-text" :value="user.username"
-                         @input="lastname= $event.target.value" >
-                      </div>
-                      <div class="mb-3">
-                        <label for="message-text"  class="col-form-label">Email:</label>
-                        <input class="form-control" type="text" id="message-text" :value="user.email"
-                         @input="email= $event.target.value" >
-                      </div>
-                      <p>{{ user.id }}</p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" v-on:click="Delete(index)">Delete</button>
-                    <button type="button" class="btn btn-success" v-on:click="UpdateItems(firtsname,user.id,lastname,email)">Update</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <section class="bg-[url('../assets/vue.svg')] bg-left bg-no-repeat bg-cover bg-[length:250px_150px] bg-[#6b7280] p-16" v-if="url!=='#/'">
+    <div class="container mx-auto">
+      <h2 class="text-[2rem]">Testimonio </h2>
     </div>
   </section>
+  <section class="bg-white p-4 text-left " v-else>
+    <div class="container mx-auto">
+      <h2 class="text-[2rem] text-[#223a31]">Testimonio </h2>
+    </div>
+  </section>
+  <section class="title-section">
+    <div class="container mx-auto">
+   
+      
+  
+      <div class="">
+       <!----> 
+       <div class="w-full" v-if="url!=='#/'">
+        <button type="button" id="success" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" style="width: 30%;height: 4rem;"  data-bs-toggle="modal" data-bs-target="#addnew" data-bs-whatever="@getbootstrap">Añadir nuevo Testimonio</button>
+        <div id="addnew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+          class=" modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+             <h2 class="modal-title fs-5" >Completar Formulario</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+            <form>
+               <div class="modal-body">
+                <div class="mb-3 md:flex sm:block items-baseline justify-between items-baseline ">
+                  <label for="recipient-name" class="block sm:w-full mb-2 text-sm font-medium text-[#003775] dark:text-white md:w-[30%] text-left">Firts Name:</label>
+                  <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  id="recipient-name" 
+                      v-model="namefirts" required="true">
+                </div>
+                <div class="mb-3 md:flex sm:block items-baseline justify-between items-baseline text-left">
+                  <label for="message-text" class="mb-3 md:flex sm:block w-[30%] font-400 text-left">Last Name:</label>
+                  <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required type="text" id="message-text" v-model="namelast" >
+                </div>
+                <div class="mb-3 md:flex sm:block items-baseline justify-between items-baseline text-left">
+                  <label for="message-text" class="mb-3 md:flex sm:block w-[30%] font-400 text-left">email:</label>
+                  <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="email" id="message-text" v-model="emailreg" >
+                </div>
+              </div>
+              <div class="modal-footer">
+                    <button type="button" class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800 mt-4" data-bs-dismiss="modal">Exit</button>
+                    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-4" data-bs-dismiss="modal" v-on:click="AddUser(namefirts,namelast,emailreg )">Add</button>
+              </div>
+            </form>
+          </div>     
+         </div>
+        </div>
+      </div>
+      <div class="md:flex md:flex-wrap justify-center" >
+        <div class="relative  bg-[#fff] p-[1rem] gap-[0.5rem] items-center rounded-[0.25rem] m-2 sm:w-full md:w-[19rem]" :current-page="currentPage"  v-for="(user,index) in users" :key="user.id"   >
+ <!--<img src="..." class="card-img-top" alt="...">-->
+         <i class="fa-solid fa-user-secret" style="font-size: 70px;"></i>
+    <div class="card-body">
+    <h5 class="mb-1 text-[1.3rem] text-gray-500">{{ user.name }}  {{ user.username }}</h5>
+    <p class="text-black">{{ user.email }}</p>
+    {{ user.id }}
+    <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-4 "  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" v-on:mouseenter="detalleUser(user.id)">
+            Modificar Detalle
+          </button>
+    <!--<a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-4">Modificar</a>-->
+        <div id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+          class=" modal fade"
+         
+          v-if="user.id === grupoItem.id"
+        >
+
+        <div class="modal-dialog">
+           <div class="modal-content">
+              <div class="modal-header">
+                <h2 class="modal-title fs-5" >Cambios de datos </h2>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                 </div>
+               <div class="modal-body">
+                 
+                     <div class="mb-3 md:flex sm:block items-baseline justify-between">
+                        <label for="recipient-name" class="mb-3 md:flex sm:block w-[30%] font-400">Firts Name:</label>
+                        <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="recipient-name" :value="user.name"
+                            @input="firtsname= $event.target.value" >
+                       </div>
+                     <div class="mb-3 md:flex sm:block items-baseline justify-between">
+                        <label for="message-text"  class="mb-3 md:flex sm:block w-[30%] font-400">Last Name:</label>
+                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" id="message-text" :value="user.username"
+                         @input="lastname= $event.target.value" >
+                      </div>
+                      <div class="mb-3 md:flex sm:block items-baseline justify-between">
+                        <label for="message-text"  class="mb-3 md:flex sm:block w-[30%] font-400">Email:</label>
+                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" id="message-text" :value="user.email"
+                         @input="email= $event.target.value" >
+                      </div>
+                <p>{{ user.id }}</p>
+                  </div>
+                
+               <div class="modal-footer">
+                  <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" data-bs-dismiss="modal" v-on:click="Delete(index)">Delete</button>
+                  <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" v-on:click="UpdateItems(firtsname,user.id,lastname,email)">Update</button>
+                </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+      </div>
+  
+</div>
+
+</div>
+
+<div class="py-5" v-if="url!=='#/testimonios'">
+                <router-link to="/testimonios" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" style="">Ver más</router-link>
+              </div>
+</section>
 </template>
 <style>
 button#success.btn-success{
@@ -227,7 +254,7 @@ button.btn-primary {
     margin-block: 0.25rem;
     border-radius: 0.25rem;
     font-weight: 600;
-    position: absolute;
+    
     text-align: -webkit-center;
 }
 </style>

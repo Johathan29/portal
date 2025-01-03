@@ -5,7 +5,7 @@ import Slider from './components/slider.vue';
 </script>
 <template>
   <Header />
-  <slider />
+  
   <div>
     <router-view></router-view>
   </div>

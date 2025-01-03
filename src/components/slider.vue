@@ -19,7 +19,7 @@ const detalleUser = () => {
   >
     <div class="carousel-inner splide__slide">
       <div
-        v-for="(item, index) in valores"
+        v-for="(item, index) in valores.splice(0,5)"
         :key="index"
         :class="[index == 0 ? activeclass : 'carousel-item']"
         v-bind:style="[]"

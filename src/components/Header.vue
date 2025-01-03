@@ -50,14 +50,14 @@ return atributo=='d-md-block'? element.classList.add('d-block'):
     </div>
     <nav :class="['d-md-block',nameclass]" id="nav" style="display: none;">
       <div :class="['container']">
-        <ul :class="['main-nav']">
+        <ul :class="['main-nav md:flex block text-left ']">
           <li
             v-for="item in router"
             :class="[item.children.length >= 1 ? 'is-dropdown' : '' + item.ubicacion== 0 ? 'd-none' : '']"
             v-bind:hidden="[ item.ubicacion== 0 ? 'd-none' : '']"
           >
             <router-link v-bind:to="item.path">{{ item.title }}</router-link>
-            <ul v-if="item.children != ''" class="sub-menu">
+            <ul v-if="item.children != ''" class="sub-menu relative md:absolute">
               <li v-for="subitem in item.children">
                 <router-link v-bind:to="subitem.path">
                   {{ subitem.titlechild }}
