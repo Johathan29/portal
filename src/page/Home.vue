@@ -1,4 +1,13 @@
-<script setup>
+<script lang="ts" setup>
+import {auth} from '../firebase';
+//console.log(auth.auth)
+</script>
+<template>
+  <Slider></Slider>
+  <Testimonio></Testimonio>
+  
+</template>
+<script lang="ts">
 import data from '../Data';
 import fetch from '../user.vue';
 
@@ -14,8 +23,3 @@ const detalleUser = () => {
 users.value
 };
 </script>
-<template>
-  <Slider></Slider>
-  <Testimonio></Testimonio>
-  
-</template>

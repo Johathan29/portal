@@ -1,6 +1,6 @@
-import { createApp } from 'vue';
+import { createApp,onMounted } from 'vue';
 import './style.css';
-
+//import {require} from 'mysql'
 import App from './App.vue';
 import quienessomos from './page/quienes-somos.vue';
 import baseLegal from './page/base-legal.vue';
@@ -35,4 +35,4 @@ app.use(router);
 app.mount('#app');
 onMounted(() => {
   initFlowbite();
-})
+});

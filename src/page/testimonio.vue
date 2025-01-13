@@ -1,7 +1,7 @@
 <script setup>
 
 import { ref, computed, onMounted } from 'vue';
-const users = ref(null);
+const users = ref([]);
 const itemUser = ref([]);
 const grupoItem = ref([]);
 const update=ref([]);
@@ -10,35 +10,36 @@ url.value=window.location.hash;
   //https://jsonplaceholder.typicode.com/users
   onMounted(async () =>
   {
-    const response = await fetch('https://jsonplaceholder.typicode.com/users');
+    const response = await fetch('https://dummyjson.com/users');
     users.value = await response.json();
-    console.log(users.value)
+    console.log((users.value.users))
     });
 
   //add infor in user
 const AddUser=(lastname, firtsname,email)=>{
   if(lastname!=null || firtsname!=null || email!=null)
   {
-    const id=users.value.length+1;
+    const id=users.value.users.length+1;
     const formulario=
     {
     id:id,
-    name:firtsname,
-    username: lastname,
+    firstName:firtsname,
+    lastName: lastname,
     email:email,
   }
-  users.value.push(formulario);
-  users.value.sort();
-  update.value.push(users.value.find((animal) => animal.id === id).id);
+  console.log(formulario);
+  users.value.users.push(formulario);
+  users.value.users.sort((a,b)=> b.id - a.id);
+  //update.value.push(users.value.users.find((animal) => animal.id === id).id);
   }
-  
+  onMounted(async ());
 }
 const detalleUser = (index) => {
  /* setTimeout(() => {
    grupoItem.value="";
   },'5000');*/
 
-  itemUser.value = users.value.find((item) => item.id === index);
+  itemUser.value = users.value.users.find((item) => item.id === index);
   grupoItem.value = itemUser.value;
 };
 // Delete items de user
@@ -91,35 +92,36 @@ const Delete = (index) => {
   
 };
 // update de user
-const UpdateItems=(firtsname,ID,lastname,email)=>
+const UpdateItems=(firstname,ID,lastname,email)=>
 {
-  if(firtsname!=null )
+  console.log(firstname,ID,lastname,email);
+  if(firstname!='' || lastname!=='' )
   {
-    users.value.filter(item =>item.id == ID ? item.name=firtsname : item.name)
-
+    users.value.users.filter(item =>item.id == ID ? item.firstName=firstname : item.firstName)
+console.log(users.value.users);
   }
   else
   {
-    users.value.filter(item =>item.id == ID ? item.name :item.name)
+    users.value.users.filter(item =>item.id == ID ? firstname=item.firstName :item.firstName)
     
   }
-  if( lastname!=null)
+  if( lastname!='')
   {
     
-    users.value.filter(item =>item.id == ID ? item.username=lastname : item.username)
+    users.value.users.filter(item =>item.id == ID ? item.lastName=lastname : item.lastName)
   }
   else
   {
-    users.value.filter(item =>item.id == ID ? item.username : item.username)
+    users.value.users.filter(item =>item.id == ID ? item.lastName : item.lastName)
   }
   if( email!=null)
   {
     
-    users.value.filter(item =>item.id == ID ? item.email=email : item.email)
+    users.value.users.filter(item =>item.id == ID ? item.email=email : item.email)
   }
   else
   {
-    users.value.filter(item =>item.id == ID ? item.email : item.email)
+    users.value.users.filter(item =>item.id == ID ? item.email : item.email)
   }
 }
 
@@ -150,8 +152,8 @@ const UpdateItems=(firtsname,ID,lastname,email)=>
       <div class="modal-content">
           <div class="modal-header">
              <h2 class="modal-title fs-5" >Completar Formulario</h2>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
             <form>
                <div class="modal-body">
                 <div class="mb-3 md:flex sm:block items-baseline justify-between items-baseline ">
@@ -178,16 +180,16 @@ const UpdateItems=(firtsname,ID,lastname,email)=>
         </div>
       </div>
       <div class="md:flex md:flex-wrap justify-center" >
-        <div class="relative  bg-[#fff] p-[1rem] gap-[0.5rem] items-center rounded-[0.25rem] m-2 sm:w-full md:w-[19rem]" :current-page="currentPage"  v-for="(user,index) in users" :key="user.id"   >
- <!--<img src="..." class="card-img-top" alt="...">-->
-         <i class="fa-solid fa-user-secret" style="font-size: 70px;"></i>
-    <div class="card-body">
-    <h5 class="mb-1 text-[1.3rem] text-gray-500">{{ user.name }}  {{ user.username }}</h5>
-    <p class="text-black">{{ user.email }}</p>
-    {{ user.id }}
-    <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-4 "  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" v-on:mouseenter="detalleUser(user.id)">
-            Modificar Detalle
-          </button>
+        <div    v-for="(user,index) in  users.users "  :key="index"   >
+          <div  v-if="url!=='#/testimonios'?index<=5:user.id" :class="['relative ','  p-[1rem] ','gap-[0.5rem]  ','items-center ','rounded-[0.25rem]',' m-2',' sm:w-full',' md:w-[19rem]','bg-'+user.eyeColor.toLowerCase() +'-700']" :current-page="currentPage">
+          <img :src="user.image " class="card-img-top w-[5rem] text-center" alt="...">
+          <div class="card-body">
+            <h5 class="mb-1 text-[1.3rem] text-white">{{ user.firstName }}  {{ user.lastName }} </h5>
+            <p class="text-black">{{ user.email }}</p>
+      
+            <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-4 "  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" v-on:mouseenter="detalleUser(user.id)">
+                    Modificar Detalle
+                  </button>
     <!--<a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-4">Modificar</a>-->
         <div id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
           class=" modal fade"
@@ -205,25 +207,25 @@ const UpdateItems=(firtsname,ID,lastname,email)=>
                  
                      <div class="mb-3 md:flex sm:block items-baseline justify-between">
                         <label for="recipient-name" class="mb-3 md:flex sm:block w-[30%] font-400">Firts Name:</label>
-                        <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="recipient-name" :value="user.name"
-                            @input="firtsname= $event.target.value" >
+                        <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="recipient-name" :value="user.firstName"
+                            @input="firstname= $event.target.value" >
                        </div>
                      <div class="mb-3 md:flex sm:block items-baseline justify-between">
                         <label for="message-text"  class="mb-3 md:flex sm:block w-[30%] font-400">Last Name:</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" id="message-text" :value="user.username"
+                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" id="message-text" :value="user.lastName"
                          @input="lastname= $event.target.value" >
                       </div>
                       <div class="mb-3 md:flex sm:block items-baseline justify-between">
                         <label for="message-text"  class="mb-3 md:flex sm:block w-[30%] font-400">Email:</label>
                         <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" id="message-text" :value="user.email"
-                         @input="email= $event.target.value" >
+                         @input="Email= $event.target.value" >
                       </div>
                 <p>{{ user.id }}</p>
                   </div>
                 
                <div class="modal-footer">
                   <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" data-bs-dismiss="modal" v-on:click="Delete(index)">Delete</button>
-                  <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" v-on:click="UpdateItems(firtsname,user.id,lastname,email)">Update</button>
+                  <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" v-on:click="UpdateItems(firstname,user.id,lastname,Email)">Update</button>
                 </div>
             </div>
           </div>
@@ -231,7 +233,7 @@ const UpdateItems=(firtsname,ID,lastname,email)=>
     </div>
   </div>
       </div>
-  
+    </div>
 </div>
 
 </div>
@@ -256,5 +258,18 @@ button.btn-primary {
     font-weight: 600;
     
     text-align: -webkit-center;
+}
+.bg-brown-700{
+  background-color: rgba(76, 54, 13, 0.998);
+}
+
+.bg-hazel-700{
+  background-color: #A19664;
+}
+.bg-amber-700{
+  background-color: #FDB803;
+}
+.bg-violet-700{
+background-color: violet;
 }
 </style>
